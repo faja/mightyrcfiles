@@ -583,8 +583,8 @@ vim.keymap.set('n', '<leader>I', ':IndentBlanklineToggle<cr>')
 vim.keymap.set('n', '<leader>sm', ':MaximizerToggle<cr>')
 
 -- telescope {{{
-vim.keymap.set('n', '<leader>o', ':Telescope find_files<cr>')
-vim.keymap.set('n', '<leader>O', ':Telescope git_files<cr>')
+vim.keymap.set('n', '<leader>o', ':Telescope find_files<cr> hidden=true')
+vim.keymap.set('n', '<leader>O', ':Telescope git_files hidden=true<cr>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
 -- nnoremap <leader>FFn :Telescope find_files cwd=~/.config/nvim<cr>
 -- nnoremap <leader>FF.. :Telescope find_files cwd=..<cr>
