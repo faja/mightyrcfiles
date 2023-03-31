@@ -659,6 +659,8 @@ end
 -- VIM TIPS AND TRIX USAGE HOWTO: TODO MOVE THIS TO MANUALS {{{
 --[[
 
+<c-w>T - move current window to new tab
+
 {{{ surround
 ds"  -- remove surrounded " ... "example"
 cs"' -- replace " with '    ... "example"
