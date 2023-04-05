@@ -41,6 +41,7 @@ vim.opt.cursorline = true -- highlights the line where the cursor is, I don't li
 -- vim.opt.list = true -- show spaces, tabs, new line characters
 -- vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
+vim.opt.wrap = false
 
 vim.opt.foldmethod = "marker"
 vim.opt.scrolloff = 12 -- super partia, jak schodzimy kursorem w dol, to zaczyna skrolowac 12 linit przed dolem
@@ -565,6 +566,7 @@ vim.keymap.set('n', '<leader>p', ':cprevious<CR>', keymapopts)
 -- other maps
 vim.keymap.set('v', 'p', '"_dP', keymapopts)
 vim.keymap.set('n', "<leader>sl", ":set list!<cr>", keymapopts)
+vim.keymap.set('n', "<leader>sw", ":set wrap!<cr>", keymapopts)
 
 -- open a url under the cursor
 -- nnoremap <c-w>gx :call jobstart(["xdg-open", expand("<cfile>")])<cr> -- works on linux only, on mac just "gx"
@@ -583,7 +585,7 @@ vim.keymap.set('n', '<leader>I', ':IndentBlanklineToggle<cr>')
 vim.keymap.set('n', '<leader>sm', ':MaximizerToggle<cr>')
 
 -- telescope {{{
-vim.keymap.set('n', '<leader>o', ':Telescope find_files<cr> hidden=true')
+vim.keymap.set('n', '<leader>o', ':Telescope find_files hidden=true<cr>')
 vim.keymap.set('n', '<leader>O', ':Telescope git_files hidden=true<cr>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
 -- nnoremap <leader>FFn :Telescope find_files cwd=~/.config/nvim<cr>
