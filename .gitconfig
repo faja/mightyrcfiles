@@ -1,0 +1,15 @@
+[user]
+    name = faja
+    email = mcabaj@gmail.com
+#[url "git@github.com:"]
+#	insteadOf = https://github.com/
+[pull]
+    ff = only
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+#[diff "sopsdiffer"]
+#	textconv = sops -d
+[color "diff"]
+	meta = white black bold
+	new = cyan black bold
+	old = red black bold
