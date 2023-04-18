@@ -117,6 +117,7 @@ require("packer").startup(function(use)
     -- git
     use "tpope/vim-fugitive"      -- https://github.com/tpope/vim-fugitive
     use "lewis6991/gitsigns.nvim" -- https://github.com/lewis6991/gitsigns.nvim
+    use "sindrets/diffview.nvim"  -- https://github.com/sindrets/diffview.nvim
 
     -- nerd tree
     use "kyazdani42/nvim-tree.lua" -- https://github.com/kyazdani42/nvim-tree.lua
@@ -446,6 +447,7 @@ lspconfig.gopls.setup { -- https://github.com/neovim/nvim-lspconfig/blob/master/
 lspconfig.jsonnet_ls.setup{ -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonnet_ls
     on_attach = on_attach,
     capabilities = capabilities,
+    -- autostart = false,
 }
 
 -- terraform
@@ -662,6 +664,17 @@ end
 --[[
 
 <c-w>T - move current window to new tab
+
+:set            - shows vars different from defaults
+:set all        - shows all values
+:set foo?       - shows the value of foo
+:set foo+=opt   - add opt to the value w/o changing others
+:set foo-=opt   - remove opt from value
+:set foo&       - reset foo to default value
+:setlocal foo   - only the current buffers
+
+:set textwidth=0
+:set wrapmargin=0
 
 {{{ surround
 ds"  -- remove surrounded " ... "example"
