@@ -701,6 +701,10 @@ cs"' -- replace " with '    ... "example"
     - a diff
     - how the file looked liek BEFORE the change
     - how the file looks liek AFTER the change
+
+# :Gedit
+- `:Gedit HASH:file` - opens a file at a specifc commit
+- `:Gedit HASH:%` - opens current file ata specific commit
 }}}
 
 {{{ telescope
