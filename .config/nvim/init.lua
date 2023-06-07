@@ -707,6 +707,22 @@ cs"' -- replace " with '    ... "example"
 - `:Gedit HASH:%` - opens current file ata specific commit
 }}}
 
+{{{ diffview
+# see changes for a single path or file
+  :DiffviewOpen 5618c3e5bf62847c1b9f7420783ec27dd438244e..b386ffca433ed6a49b76147758857d1a4f84caba -- vpc/outputs.tf
+this is equivalent of
+  git diff 5618c3e5bf62847c1b9f7420783ec27dd438244e..b386ffca433ed6a49b76147758857d1a4f84caba vpc/outputs.tf
+
+# see history for current file
+  :DiffviewFileHistory %
+
+# nice flow
+  1. open diffview
+  2. select a file then "gf" to open it in previous tab
+  3. :DiffviewFileHistory %
+
+}}}
+
 {{{ telescope
 
 - TAB - mark an item
