@@ -109,10 +109,12 @@ require("packer").startup(function(use)
     use "kyazdani42/nvim-web-devicons" -- icons, you must install nerdfonts first: https://www.nerdfonts.com/
 
     -- colors
+    use "rktjmp/lush.nvim"                       -- not a colorscheme, "just" a "helper", required by bluloco, https://github.com/rktjmp/lush.nvim
     use "gruvbox-community/gruvbox"              -- gruuuuuuuuuvbox baby, the one and the only
     use "bluz71/vim-nightfly-guicolors"          -- lets give it a try, https://github.com/bluz71/vim-nightfly-guicolors
     use "lunarvim/Onedarker.nvim"                -- https://github.com/lunarvim/Onedarker.nvim
     use { 'rose-pine/neovim', as = 'rose-pine' } -- https://github.com/rose-pine/neovim
+    use "uloco/bluloco.nvim"                     -- https://github.com/uloco/bluloco.nvim
 
     -- git
     use "tpope/vim-fugitive"      -- https://github.com/tpope/vim-fugitive
@@ -159,7 +161,9 @@ end)
 -- vim.cmd('colorscheme gruvbox')
 -- vim.cmd("colorscheme nightfly")
 -- vim.cmd("colorscheme onedarker")
-vim.cmd("colorscheme rose-pine")
+-- vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme bluloco")
+vim.opt.guicursor = ""
 
 -- diff colors
 -- for future reference
