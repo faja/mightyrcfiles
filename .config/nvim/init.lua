@@ -192,6 +192,8 @@ require('nvim-tree').setup {
         ignore = false,
     },
     renderer = {
+        add_trailing = true,
+        symlink_destination = false,
         highlight_git = false,
         highlight_opened_files = "none",
         icons = {
@@ -740,6 +742,16 @@ c     : check_package_version
 U     : update_all_packages
 C     : check_outdated_packages
 X     : uninstall_package
+}}}
+
+{{{ nvim-tree
+-- keybindings
+E     : expand all
+W     : collaps all
+H     : toggle .dot files
+J     : last sibling
+K     : first sibling
+P     : parent
 }}}
 
 --]]
