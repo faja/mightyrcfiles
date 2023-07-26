@@ -731,6 +731,9 @@ this is equivalent of
 - CTRL+Q - open ALL items in a quick list
 - ALT+Q  - open marked items in a quick list
 
+-- search syntax for FZF ~> https://github.com/junegunn/fzf#search-syntax
+- one simple example is: `!foobar` - items that do not include `foobar`
+
 }}}
 
 {{{ mason
