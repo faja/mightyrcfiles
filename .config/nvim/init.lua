@@ -635,6 +635,7 @@ vim.keymap.set("n", "gq", "<cmd>lua vim.diagnostic.setqflist()<cr>", keymapopts)
 
 -- autocmd {{{
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {pattern='*.nomadtpl', command='set syntax=hcl'})
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {pattern='*.nomad.j2', command='set syntax=hcl'})
 vim.api.nvim_create_autocmd({"BufWritePre"}, {pattern='*', command=[[%s/\s\+$//e]]}) -- remove trailing white spaces
 -- }}}
 
