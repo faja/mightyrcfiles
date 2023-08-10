@@ -115,6 +115,7 @@ require("packer").startup(function(use)
     use "lunarvim/Onedarker.nvim"                -- https://github.com/lunarvim/Onedarker.nvim
     use { 'rose-pine/neovim', as = 'rose-pine' } -- https://github.com/rose-pine/neovim
     use "uloco/bluloco.nvim"                     -- https://github.com/uloco/bluloco.nvim
+    use { "catppuccin/nvim", as = "catppuccin" } -- https://github.com/catppuccin/nvim
 
     -- git
     use "tpope/vim-fugitive"      -- https://github.com/tpope/vim-fugitive
@@ -162,8 +163,9 @@ end)
 -- vim.cmd("colorscheme nightfly")
 -- vim.cmd("colorscheme onedarker")
 -- vim.cmd("colorscheme rose-pine")
-vim.cmd("colorscheme bluloco")
-vim.opt.guicursor = ""
+-- vim.cmd("colorscheme bluloco")
+-- vim.opt.guicursor = ""
+vim.cmd.colorscheme "catppuccin-mocha"
 
 -- diff colors
 -- for future reference
