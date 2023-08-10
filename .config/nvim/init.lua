@@ -107,6 +107,7 @@ require("packer").startup(function(use)
     use "tpope/vim-surround"           -- surround plugin
     use "szw/vim-maximizer"            -- split window maximizer, https://github.com/szw/vim-maximizer
     use "kyazdani42/nvim-web-devicons" -- icons, you must install nerdfonts first: https://www.nerdfonts.com/
+    use "ThePrimeagen/harpoon"         -- https://github.com/ThePrimeagen/harpoon
 
     -- colors
     use "rktjmp/lush.nvim"                       -- not a colorscheme, "just" a "helper", required by bluloco, https://github.com/rktjmp/lush.nvim
@@ -516,6 +517,12 @@ require("lsp_signature").setup {
     toggle_key = '<M-x>',
 }
 -- }}}
+require("harpoon").setup({
+    menu = {
+        -- width = vim.api.nvim_win_get_width(0) - 4,
+        width = 120,
+    }
+})
 -- }}}
 
 -- my custom remaps {{{
@@ -593,6 +600,16 @@ vim.keymap.set('n', '<leader>I', ':IndentBlanklineToggle<cr>')
 
 -- maximizer
 vim.keymap.set('n', '<leader>sm', ':MaximizerToggle<cr>')
+
+-- harpoon
+vim.keymap.set('n', '<leader>rr', ':lua require("harpoon.ui").toggle_quick_menu()<cr>')
+vim.keymap.set('n', '<leader>ra', ':lua require("harpoon.mark").add_file()<cr>')
+vim.keymap.set('n', '<leader>rn', ':lua require("harpoon.ui").nav_next()<cr>')
+vim.keymap.set('n', '<leader>rp', ':lua require("harpoon.ui").nav_prev()<cr>')
+vim.keymap.set('n', '<leader>r1', ':lua require("harpoon.ui").nav_file(1)<cr>')
+vim.keymap.set('n', '<leader>r2', ':lua require("harpoon.ui").nav_file(2)<cr>')
+vim.keymap.set('n', '<leader>r3', ':lua require("harpoon.ui").nav_file(3)<cr>')
+vim.keymap.set('n', '<leader>r4', ':lua require("harpoon.ui").nav_file(4)<cr>')
 
 -- telescope {{{
 vim.keymap.set('n', '<leader>o', ':Telescope find_files hidden=true<cr>')
