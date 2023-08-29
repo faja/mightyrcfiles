@@ -626,8 +626,8 @@ vim.keymap.set('n', '<leader>?!', require('telescope.builtin').live_grep) -- laj
 -- }}}
 
 -- git {{{
-vim.keymap.set('n', ']c', '<cmd>Gitsigns next_hunk<cr>')
-vim.keymap.set('n', '[c', '<cmd>Gitsigns prev_hunk<cr>')
+vim.keymap.set('n', ']C', '<cmd>Gitsigns next_hunk<cr>')
+vim.keymap.set('n', '[C', '<cmd>Gitsigns prev_hunk<cr>')
 vim.keymap.set('n', '<leader>Hp', '<cmd>Gitsigns preview_hunk<cr>')
 vim.keymap.set('n', '<leader>Hs', '<cmd>Gitsigns stage_hunk<cr>')
 vim.keymap.set('n', '<leader>HS', '<cmd>Gitsigns stage_buffer<cr>')
@@ -782,6 +782,10 @@ K     : first sibling
 P     : parent
 }}}
 
+
+-- how to disable/enable diagnostics
+    :lua vim.diagnostic.disable()
+    :lua vim.diagnostic.enable()
 --]]
 -- }}}
 
