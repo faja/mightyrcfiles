@@ -801,6 +801,15 @@ K     : first sibling
 P     : parent
 }}}
 
+{{{ :!execute a command
+:!ls        # executes a command `ls` and puts the output to a tmp buffer
+:.!ls       # executes a command `ls` and puts the output to THE CURRENT BUFFER
+
+# visual select a line(s) the !<command> # this will take the selected lines as an input to <command>
+# handy example is to use `jq` to format single line json to pretty printed
+# {"ok": "thisisnotformatedjson"}
+# :'<,'>!jq
+}}}
 
 -- how to disable/enable diagnostics
     :lua vim.diagnostic.disable()
