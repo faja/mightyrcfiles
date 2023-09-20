@@ -62,7 +62,8 @@ vim.opt.softtabstop = 4    -- to samo co u gory tylko w przypadku wpisywania <TA
 vim.opt.shiftwidth = 0     -- o ile spacji przenosimy indentacje w lewo lub w prawo za pomoca `>>`/`<<`
                            -- lub jesli mamy expandtab to tylk spacji zostanie zrobionych po wcisnieciu <TAB>
                            -- jesli ustawione na 0, bierzemy wartosc z tabstop
-vim.opt.expandtab = true   -- jesli wcisniemy <TAB> to vim wpisze nam <SPACE>*shiftwidth
+vim.opt.expandtab = false   -- jesli wcisniemy <TAB> to vim wpisze nam <SPACE>*shiftwidth - DISABLING
+                            -- howevera, in most cases this is changed based on .editorconfig, or filetype
 vim.opt.smartindent = true -- vim rozkminia kiedy zrobic autoindentacje
 
 -- colors
@@ -304,11 +305,29 @@ cmp.setup.cmdline(':', {
 -- }}}
 -- treesitter {{{
 require("nvim-treesitter.configs").setup {
-    -- ensure_installed = { "bash", "lua", "vim", "help", "query" },
-    ensure_installed = "all",
+    -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+    ensure_installed = {
+        "bash",
+        "c", -- this is part of the nvim installation anyway, lib/nvim/parser/c.so, but I'm adding it here explicitly
+        "comment", -- for TODO highlighting
+        "dockerfile",
+        "go",
+        "hcl",
+        "help",
+        "json",
+        "jsonnet",
+        "lua", -- part of the nvim installation, lib/nvim/parser/lua.so
+        "markdown",
+        "query", -- part of the nvim installation, lib/nvim/parser/query.so
+        "vim", -- part of the nvim installation, lib/nvim/parser/vim.so
+        "vimdoc", -- part of the nvim installation, lib/nvim/parser/vimdoc.so
+        "yaml",
+    },
+    -- ensure_installed = "all",
     -- ignore_install = { "..." },
-    sync_install = false, -- install parsers synchronously
+    sync_install = true, -- install parsers synchronously
     auto_install = true,  -- automatically install missing parsers when entering buffer
+                          -- once I figure out all parsers I need please consider disabling
 
     highlight = {
         enable = true,
@@ -316,11 +335,11 @@ require("nvim-treesitter.configs").setup {
     },
 
     autopairs = {
-        enable = true,
+        enable = false,
     },
 
     indent = {
-        enable = true,
+        enable = false,
         -- disable = { "...", "..." },
     }
 }
