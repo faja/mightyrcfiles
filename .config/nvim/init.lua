@@ -313,12 +313,12 @@ require("nvim-treesitter.configs").setup {
         "dockerfile",
         "go",
         "hcl",
-        "help",
         "json",
         "jsonnet",
         "lua", -- part of the nvim installation, lib/nvim/parser/lua.so
         "markdown",
         "query", -- part of the nvim installation, lib/nvim/parser/query.so
+        "terraform",
         "vim", -- part of the nvim installation, lib/nvim/parser/vim.so
         "vimdoc", -- part of the nvim installation, lib/nvim/parser/vimdoc.so
         "yaml",
