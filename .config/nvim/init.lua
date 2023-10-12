@@ -248,13 +248,13 @@ local lspkind = require("lspkind")
 cmp.setup {
     mapping = {
         ["<c-q>"] = cmp.mapping.complete(), -- start completion manually
-        ["<c-p>"] = cmp.mapping.select_prev_item(),
-        ["<c-n>"] = cmp.mapping.select_next_item(),
+        ["<up>"] = cmp.mapping.select_prev_item(),
+        ["<down>"] = cmp.mapping.select_next_item(),
         ["<c-e>"] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
-        ["<c-space>"] = cmp.mapping.confirm { select = true },
+        ["<tab>"] = cmp.mapping.confirm { select = true },
         ["<c-u>"] = cmp.mapping.scroll_docs(-1),
         ["<c-d>"] = cmp.mapping.scroll_docs(1),
     },
