@@ -234,11 +234,12 @@ require('lualine').setup()
 require('nvim-web-devicons').setup()
 -- }}}
 -- indent {{{
-require("indent_blankline").setup {
+require("ibl").setup {
+    -- help :ibl.config
     enabled = false,
-    show_first_indent_level = false,
-    show_end_of_line = true,
-    char_list = {'|', '¦', '┆', '┊'},
+    indent = {
+      char = {'|', '¦', '┆', '┊'},
+    },
 }
 -- }}}
 -- cmp {{{
@@ -615,10 +616,13 @@ vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader>f', ':NvimTreeFindFileToggle<cr>')
 
 -- indent
-vim.keymap.set('n', '<leader>I', ':IndentBlanklineToggle<cr>')
+vim.keymap.set('n', '<leader>I', ':IBLToggle<cr>')
 
 -- maximizer
 vim.keymap.set('n', '<leader>sm', ':MaximizerToggle<cr>')
+
+-- treesitter
+vim.keymap.set('n', '<leader>tt', ':TSToggle highlight<cr>')
 
 -- harpoon
 vim.keymap.set('n', '<leader>rr', ':lua require("harpoon.ui").toggle_quick_menu()<cr>')
@@ -804,6 +808,8 @@ H     : toggle .dot files
 J     : last sibling
 K     : first sibling
 P     : parent
+m     : mark
+bd    : delete marked
 }}}
 
 {{{ :!execute a command
