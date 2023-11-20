@@ -635,8 +635,8 @@ vim.keymap.set('n', '<leader>r3', ':lua require("harpoon.ui").nav_file(3)<cr>')
 vim.keymap.set('n', '<leader>r4', ':lua require("harpoon.ui").nav_file(4)<cr>')
 
 -- telescope {{{
-vim.keymap.set('n', '<leader>o', ':Telescope find_files hidden=true<cr>')
-vim.keymap.set('n', '<leader>O', ':Telescope git_files hidden=true<cr>')
+vim.keymap.set('n', '<leader>O', ':Telescope find_files hidden=true<cr>')
+vim.keymap.set('n', '<leader>o', ':Telescope git_files hidden=true<cr>')
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
 -- nnoremap <leader>FFn :Telescope find_files cwd=~/.config/nvim<cr>
 -- nnoremap <leader>FF.. :Telescope find_files cwd=..<cr>
