@@ -548,6 +548,7 @@ require("harpoon").setup({
 -- my custom remaps {{{
 local keymapopts = { noremap = true, silent = true }
 vim.keymap.set('n', 'Q', ':q<CR>', keymapopts) -- quit
+vim.keymap.set('n', 'W', ':w<CR>', keymapopts) -- write
 vim.keymap.set('n', '*', '*zz', keymapopts) -- zz centers the screan, so it will center the screen after each serach, nojs!
 vim.keymap.set('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', keymapopts) -- edit init.lua main config file
 vim.keymap.set('n', 'Y', 'yy', keymapopts) -- old good Y
