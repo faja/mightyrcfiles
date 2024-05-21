@@ -75,6 +75,7 @@ vim.opt.background = "dark"
 -- vim.opt.undofile = true -- save undo file, undodir is by default ~/.local/share/nvim/undo, BUT, actually I don't like it
 vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.backupcopy = "yes" -- just to make docker bind mount happy
 
 -- plugins related
 -- cmp
