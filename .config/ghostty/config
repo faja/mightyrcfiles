@@ -1,0 +1,17 @@
+background-opacity=0.9
+window-decoration=false
+font-size=09
+
+# to disable most ligatures
+# font-feature=-liga
+# font-feature=-calt
+# font-feature=-dlig
+
+theme=Blue Matrix
+theme=RetroLegends
+theme=AlienBlood
+theme=Wryan
+
+theme=Batman
+theme=GruvboxDarkHard
+theme=BirdsOfParadise
