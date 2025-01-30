@@ -158,6 +158,9 @@ require("packer").startup(function(use)
     use "jose-elias-alvarez/null-ls.nvim"   -- https://github.com/jose-elias-alvarez/null-ls.nvim
     use "onsails/lspkind-nvim"              -- https://github.com/onsails/lspkind-nvim
     use "ray-x/lsp_signature.nvim"          -- https://github.com/ray-x/lsp_signature.nvim
+
+    -- lazygit
+    use "kdheepak/lazygit.nvim"             -- https://github.com/kdheepak/lazygit.nvim
 end)
 -- }}}
 
@@ -660,6 +663,9 @@ vim.keymap.set('n', '<leader>HS', '<cmd>Gitsigns stage_buffer<cr>')
 vim.keymap.set('n', '<leader>Hu', '<cmd>Gitsigns undo_stage_hunk<cr>')
 vim.keymap.set('n', '<leader>Hu', '<cmd>Gitsigns reset_hunk<cr>')       -- undo single hunk
 vim.keymap.set('n', '<leader>HU', '<cmd>Gitsigns reset_buffer<cr>')     -- undo whole file
+
+-- lets give it a try
+vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<cr>')
 -- }}}
 
 -- lsp {{{
