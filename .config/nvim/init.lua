@@ -665,7 +665,7 @@ vim.keymap.set('n', '<leader>Hu', '<cmd>Gitsigns reset_hunk<cr>')       -- undo 
 vim.keymap.set('n', '<leader>HU', '<cmd>Gitsigns reset_buffer<cr>')     -- undo whole file
 
 -- lets give it a try
-vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<cr>')
+vim.keymap.set('n', '<leader>ig', '<cmd>LazyGit<cr>')
 -- }}}
 
 -- lsp {{{
