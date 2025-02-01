@@ -259,7 +259,7 @@ cmp.setup {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
-        ["<tab>"] = cmp.mapping.confirm { select = true },
+        ["<enter>"] = cmp.mapping.confirm { select = true },
         ["<c-u>"] = cmp.mapping.scroll_docs(-1),
         ["<c-d>"] = cmp.mapping.scroll_docs(1),
     },
@@ -493,6 +493,11 @@ lspconfig.tflint.setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
+
+lspconfig.rust_analyzer.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 -- }}}
 -- null-ls {{{
 local null_ls = require("null-ls")
@@ -633,7 +638,7 @@ vim.keymap.set('n', '<leader>tt', ':TSToggle highlight<cr>')
 vim.keymap.set('n', '<leader>rr', ':lua require("harpoon.ui").toggle_quick_menu()<cr>')
 vim.keymap.set('n', '<leader>rR', ':Telescope harpoon marks<cr>')
 vim.keymap.set('n', '<leader>ra', ':lua require("harpoon.mark").add_file()<cr>')
-vim.keymap.set('n', '<leader>rn', ':lua require("harpoon.ui").nav_next()<cr>')
+vim.keymap.set('n', '<leader>rm', ':lua require("harpoon.ui").nav_next()<cr>')
 vim.keymap.set('n', '<leader>rp', ':lua require("harpoon.ui").nav_prev()<cr>')
 vim.keymap.set('n', '<leader>r1', ':lua require("harpoon.ui").nav_file(1)<cr>')
 vim.keymap.set('n', '<leader>r2', ':lua require("harpoon.ui").nav_file(2)<cr>')
