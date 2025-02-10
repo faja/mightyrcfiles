@@ -1,3 +1,4 @@
+background-opacity=1
 background-opacity=0.9
 window-decoration=false
 font-size=09
@@ -7,11 +8,11 @@ font-size=09
 # font-feature=-calt
 # font-feature=-dlig
 
-theme=Blue Matrix
 theme=RetroLegends
+theme=Blue Matrix
 theme=AlienBlood
-theme=Wryan
 
-theme=GruvboxDarkHard
-#theme=BirdsOfParadise
 theme=Batman
+theme=GruvboxDarkHard
+theme=BirdsOfParadise
+theme=Wryan
