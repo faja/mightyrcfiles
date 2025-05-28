@@ -1,101 +1,6 @@
--- new installation {{{
---[[
-rm -rf ~/.config/nvim  ~/.local/share/nvim ~/.cache/nvim/
-git clone --depth 1 https://github.com/wbthomason/packer.nvim  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-nvim -> :PackerSync :q
-nvim -> :PackerSync :TSUpdate :q
-nvim -> :Mason
---]]
---}}}
--- vimscript TO lua cheatsheet {{{
---[[
-https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
-
-set colorcolumn=80    ->    vim.opt.colorcolumn = 80
-set diffopt+=vertical ->    vim.opt.diffopt:append('vertical')
-colorscheme gruvbox   ->    vim.cmd('colorscheme gruvbox')
-
-:help vim.keymap.set()
---]]
--- }}}
-
--- nvim config dir ~/.config/nvim/
--- nvim data dir ~/.local/share/nvim/
--- nvim cache dir ~/.cache/nvim/
-
--- weekly maintenance
--- :PackerSync:
--- :TSUpdateSync
--- :Mason -> U
-
-vim.g.mapleader = " "
-
--- general config {{{
--- :help options
-vim.opt.mouse = "" -- disabling mouse support blah
-vim.opt.guicursor = "" -- jak wchodzisz do INSERT mode, to mordo zostawl BLOCK jako kursor, anie jak pizda kreseczke
-vim.opt.hidden = true -- nie musisz zapisac pliku by zmienic buffer
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true -- highlights the line where the cursor is, I don't like it actually, disabling for now, or...lets give it a try
--- vim.opt.list = true -- show spaces, tabs, new line characters
--- vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
-vim.opt.wrap = false
-
-vim.opt.foldmethod = "marker"
-vim.opt.scrolloff = 12 -- super partia, jak schodzimy kursorem w dol, to zaczyna skrolowac 12 linit przed dolem
-vim.opt.updatetime = 50
-vim.opt.errorbells = false -- no do huja jak to moze nie byc default, wylacza irytujacy dzwoneczek
-
-vim.opt.iskeyword:append("-") -- do not separate words with `-`, I found it useful especally using * to search for words with a - in them
-vim.opt.fileencoding = "utf-8"
--- vim.opt.showtabline = 2 -- always show tabline, even if single file is opened
-
---  split
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- tabs
-vim.opt.tabstop = 4        -- ok, najpierw ile spacji to <TAB>, czyli jak jest w pliku <TAB> to bedzie wyswietlany jako 4 spacje
-vim.opt.softtabstop = 4    -- to samo co u gory tylko w przypadku wpisywania <TAB>, wiec jesli klikniemy <TAB> to nam sie wpisza 4 spacje
-vim.opt.shiftwidth = 0     -- o ile spacji przenosimy indentacje w lewo lub w prawo za pomoca `>>`/`<<`
-                           -- lub jesli mamy expandtab to tylk spacji zostanie zrobionych po wcisnieciu <TAB>
-                           -- jesli ustawione na 0, bierzemy wartosc z tabstop
-vim.opt.expandtab = false   -- jesli wcisniemy <TAB> to vim wpisze nam <SPACE>*shiftwidth - DISABLING
-                            -- howevera, in most cases this is changed based on .editorconfig, or filetype
-vim.opt.smartindent = true -- vim rozkminia kiedy zrobic autoindentacje
-
--- colors
-vim.opt.colorcolumn = "80"
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-
--- backup and swap
--- vim.opt.undofile = true -- save undo file, undodir is by default ~/.local/share/nvim/undo, BUT, actually I don't like it
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.backupcopy = "yes" -- just to make docker bind mount happy
-
--- plugins related
--- cmp
-vim.opt.completeopt = { "menuone", "noselect" }         -- for cmp, from lunar
--- vim.opt.completeopt = { "menu", "menuone", "noselect" } -- for cmp, my old
-
--- git
--- use vertical split by default when u dd, because nie chce mi sie klikac
--- dv aby zrobic vertical split przy difie, dd jest szybsze i milsze w uzyciu
-vim.opt.diffopt:append('vertical') -- git
--- }}}
-
 -- plugin install {{{
--- before you start, install packer by hand with git command
--- git clone --depth 1 https://github.com/wbthomason/packer.nvim  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
--- I personally don't like all the autoinstall and bootstrap things, so I'm doing it by hand
--- alos I'm not a big fan of running :PackerSync with autocommand, again I'll be running it by hand
+            --
 require("packer").startup(function(use)
-    -- packer can manage itself
-    use "wbthomason/packer.nvim"
 
     -- bunch of lua functions that other plugins are using, eg telescope
     use "nvim-lua/plenary.nvim" -- https://github.com/nvim-lua/plenary.nvim
@@ -110,15 +15,6 @@ require("packer").startup(function(use)
     use "szw/vim-maximizer"            -- split window maximizer, https://github.com/szw/vim-maximizer
     use "kyazdani42/nvim-web-devicons" -- icons, you must install nerdfonts first: https://www.nerdfonts.com/
     use "ThePrimeagen/harpoon"         -- https://github.com/ThePrimeagen/harpoon
-
-    -- colors
-    use "rktjmp/lush.nvim"                       -- not a colorscheme, "just" a "helper", required by bluloco, https://github.com/rktjmp/lush.nvim
-    use "gruvbox-community/gruvbox"              -- gruuuuuuuuuvbox baby, the one and the only
-    use "bluz71/vim-nightfly-guicolors"          -- lets give it a try, https://github.com/bluz71/vim-nightfly-guicolors
-    use "lunarvim/Onedarker.nvim"                -- https://github.com/lunarvim/Onedarker.nvim
-    use { 'rose-pine/neovim', as = 'rose-pine' } -- https://github.com/rose-pine/neovim
-    use "uloco/bluloco.nvim"                     -- https://github.com/uloco/bluloco.nvim
-    use { "catppuccin/nvim", as = "catppuccin" } -- https://github.com/catppuccin/nvim
 
     -- git
     use "tpope/vim-fugitive"      -- https://github.com/tpope/vim-fugitive
@@ -155,81 +51,21 @@ require("packer").startup(function(use)
     use "williamboman/mason-lspconfig.nvim" -- https://github.com/williamboman/mason-lspconfig.nvim
     use "jay-babu/mason-null-ls.nvim"       -- https://github.com/jay-babu/mason-null-ls.nvim
     use "neovim/nvim-lspconfig"             -- https://github.com/neovim/nvim-lspconfig
-    use "jose-elias-alvarez/null-ls.nvim"   -- https://github.com/jose-elias-alvarez/null-ls.nvim
+    -- use "jose-elias-alvarez/null-ls.nvim"   -- https://github.com/jose-elias-alvarez/null-ls.nvim
+    use "nvimtools/none-ls.nvim"            -- https://github.com/nvimtools/none-ls.nvim
     use "onsails/lspkind-nvim"              -- https://github.com/onsails/lspkind-nvim
     use "ray-x/lsp_signature.nvim"          -- https://github.com/ray-x/lsp_signature.nvim
 
-    -- lazygit
-    use "kdheepak/lazygit.nvim"             -- https://github.com/kdheepak/lazygit.nvim
+    -- markdown
+    use "OXY2DEV/markview.nvim"             -- https://github.com/OXY2DEV/markview.nvim
+    use "brianhuster/live-preview.nvim"     -- https://github.com/brianhuster/live-preview.nvim
+      -- :h livepreview
 end)
--- }}}
-
--- colors {{{
--- vim.cmd('colorscheme gruvbox')
--- vim.cmd("colorscheme nightfly")
--- vim.cmd("colorscheme onedarker")
--- vim.cmd("colorscheme rose-pine")
--- vim.cmd("colorscheme bluloco")
--- vim.opt.guicursor = ""
-vim.cmd.colorscheme "catppuccin-mocha"
-
--- diff colors
--- for future reference
---   jesli uzywamy termguicolors, wazne sa tylko wartosci gui*
---       - gui   - "opcja", search for ':h attr-list' to see all options
---       - guifg - literki
---       - guibg - tlo
---   jesli uzywamy term based colors, wazne sa tylko wartosci cterm*
-vim.cmd [[
-    highlight Normal guibg=none
-    highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=23 gui=bold guifg=LightGreen guibg=#01364F
-    highlight DiffDelete cterm=bold ctermfg=1  ctermbg=23 gui=bold guifg=LightRed   guibg=#01364F
-    highlight DiffChange cterm=bold ctermfg=10 ctermbg=23 gui=bold guifg=LightGreen guibg=#01364F
-    highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=bold guifg=LightGreen guibg=DarkRed
-]]
-
--- NonText is an end of line character
--- highlight NonText guifg=#30365F ctermfg=237 guibg=none ctermbg=233 gui=none cterm=none
--- highlight EndOfBuffer guibg=none
 -- }}}
 
 -- plugin config {{{
 -- git {{{
 require("gitsigns").setup()
--- }}}
--- nvim-tree {{{
--- :help nvim-tree-setup
-require('nvim-tree').setup {
-    git = {
-        ignore = false,
-    },
-    renderer = {
-        add_trailing = true,
-        symlink_destination = false,
-        highlight_git = false,
-        highlight_opened_files = "none",
-        icons = {
-            show = {
-                git = true,
-                folder = false,
-                file = false,
-                folder_arrow = false,
-            },
-        },
-        indent_markers = {
-            enable = true,
-        },
-    },
-    view = {
-        adaptive_size = true,
-    },
-    -- update_cwd = true,
-    -- update_focused_file = {
-    --     enable      = true,
-    --     update_cwd  = true,
-    --     ignore_list = {}
-    -- },
-}
 -- }}}
 -- lualine {{{
 require('lualine').setup()
@@ -500,7 +336,8 @@ lspconfig.rust_analyzer.setup{
 }
 -- }}}
 -- null-ls {{{
-local null_ls = require("null-ls")
+local null_ls = require("null-ls") -- replaced with
+-- local null_ls = require("none-ls")
 
 -- format on save
 local null_ls_on_attach = function(client, bufnr)
@@ -553,70 +390,13 @@ require("harpoon").setup({
         width = 120,
     }
 })
--- }}}
 
--- my custom remaps {{{
-local keymapopts = { noremap = true, silent = true }
-vim.keymap.set('n', 'Q', ':q<CR>', keymapopts) -- quit
-vim.keymap.set('n', '*', '*zz', keymapopts) -- zz centers the screan, so it will center the screen after each serach, nojs!
-vim.keymap.set('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', keymapopts) -- edit init.lua main config file
-vim.keymap.set('n', 'Y', 'yy', keymapopts) -- old good Y
-vim.keymap.set('n', 'x', '"_x', keymapopts) -- when using x to remove a character, do not copy it to the register, BUT! ...
-                                            -- this disables cool trick "xp" to swap two characters 1234567, BUT! ...
-                                            -- I can still do sC-jp to swap
-                                            --
--- split
-vim.keymap.set('n', '<leader>ss', '<c-w>v', keymapopts) -- split vertically   `|`
-vim.keymap.set('n', '<leader>s-', '<c-w>s', keymapopts) -- split horizontally `-`
-vim.keymap.set('n', '<leader>se', '<c-w>=', keymapopts) -- make splits equal
-
--- windows jumping and resizing
-vim.keymap.set('n', '<leader>h', ':wincmd h<CR>', keymapopts)
-vim.keymap.set('n', '<leader>j', ':wincmd j<CR>', keymapopts)
-vim.keymap.set('n', '<leader>k', ':wincmd k<CR>', keymapopts)
-vim.keymap.set('n', '<leader>l', ':wincmd l<CR>', keymapopts)
-
-vim.keymap.set('n', '<s-up>', ':resize +2<cr>', keymapopts)
-vim.keymap.set('n', '<s-down>', ':resize -2<cr>', keymapopts)
-vim.keymap.set('n', '<s-left>', ':vertical resize +2<cr>', keymapopts)
-vim.keymap.set('n', '<s-right>', ':vertical resize -2<cr>', keymapopts)
-
--- CTRL+hjkl = ESCAPE
--- vim.keymap.set('i', '<c-h>', '<ESC>l', keymapopts) -- <c-h> == <backspace> in linux, disabling
-vim.keymap.set('i', '<c-j>', '<ESC>l', keymapopts)
-vim.keymap.set('i', '<c-k>', '<ESC>l', keymapopts)
-vim.keymap.set('i', '<c-l>', '<ESC>l', keymapopts)
-
--- scroll
-vim.keymap.set('n', '<c-k>', '<c-y>k', keymapopts)
-vim.keymap.set('n', '<c-j>', '<c-e>j', keymapopts)
-
--- tabsy mordo
-vim.keymap.set('n', '<c-t>', ':tabnew<CR>', keymapopts)
-vim.keymap.set('n', '(', ':tabprev<CR>', keymapopts)
-vim.keymap.set('n', ')', ':tabnext<CR>', keymapopts)
-vim.keymap.set('n', '<leader>(', ':tabmove -1<CR>', keymapopts)
-vim.keymap.set('n', '<leader>)', ':tabmove +1<CR>', keymapopts)
-
--- search and replace
-vim.keymap.set('n', '<leader>/', ':noh<CR>', keymapopts)
-
--- pwd and cd
-vim.keymap.set('n', '<leader>%%', ':pwd<CR>', { noremap = true })
-vim.keymap.set('n', '<leader>%!', ':cd %:p:h<CR>', { noremap = true })
--- vim.keymap.set('n', '<leader>%!', ':echo expand('%:p')<cr>') --  print full path to the current file, disabling, as it's the same as: `CTRL+g` (or `1` then `CTRL+g`)
-
--- quick fix list
-vim.keymap.set('n', '<leader>n', ':cnext<CR>', keymapopts)
-vim.keymap.set('n', '<leader>p', ':cprevious<CR>', keymapopts)
-
--- other maps
-vim.keymap.set('v', 'p', '"_dP', keymapopts)
-vim.keymap.set('n', "<leader>sl", ":set list!<cr>", keymapopts)
-vim.keymap.set('n', "<leader>sw", ":set wrap!<cr>", keymapopts)
-
--- open a url under the cursor
--- nnoremap <c-w>gx :call jobstart(["xdg-open", expand("<cfile>")])<cr> -- works on linux only, on mac just "gx"
+require('livepreview.config').set()
+require('markview').setup({
+    preview = {
+        enable = false,
+    }
+})
 -- }}}
 
 -- plugin remaps {{{
@@ -840,9 +620,4 @@ bd    : delete marked
     :lua vim.diagnostic.disable()
     :lua vim.diagnostic.enable()
 --]]
--- }}}
-
--- {{{ nvim config git repos, just for reference
--- - https://github.com/josean-dev/dev-environment-files/blob/main/.config/nvim/lua/josean/plugins/lsp/lspconfig.lua
--- - https://github.com/LunarVim/Neovim-from-scratch/blob/master/lua/user/lsp/handlers.lua
 -- }}}

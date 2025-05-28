@@ -16,3 +16,7 @@ theme=Batman
 theme=GruvboxDarkHard
 theme=BirdsOfParadise
 theme=Wryan
+
+# ctrl + 0     - reset font size
+# ctrl + equal - increas font size
+# ctrl + minus - decreas font size
