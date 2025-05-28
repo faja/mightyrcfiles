@@ -66,7 +66,7 @@ vim.opt.list = true             -- show trailing spaces and tabs
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
 
--- TODO
+-- TODO:
 -- plugins related
 -- cmp
 vim.opt.completeopt = { "menuone", "noselect" }         -- for cmp, from lunar
@@ -76,14 +76,3 @@ vim.opt.completeopt = { "menuone", "noselect" }         -- for cmp, from lunar
 -- use vertical split by default when u dd, because nie chce mi sie klikac
 -- dv aby zrobic vertical split przy difie, dd jest szybsze i milsze w uzyciu
 vim.opt.diffopt:append('vertical') -- git
-
--- vimscript TO lua cheatsheet {{{
---[[
-https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
-
-set colorcolumn=80    ->    vim.opt.colorcolumn = 80
-set diffopt+=vertical ->    vim.opt.diffopt:append('vertical')
-colorscheme gruvbox   ->    vim.cmd('colorscheme gruvbox')
-
-:help vim.keymap.set()
---]]
