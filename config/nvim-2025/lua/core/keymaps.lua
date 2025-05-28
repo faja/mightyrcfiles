@@ -60,9 +60,16 @@ vim.keymap.set('n', '<leader>%!', ':cd %:p:h<CR>', { noremap = true }) -- cd to 
 vim.keymap.set('n', "<leader>sl", ":set list!<cr>", keymapopts) -- toggle show list (characters)
 vim.keymap.set('n', "<leader>sw", ":set wrap!<cr>", keymapopts) -- toggle wrapping lines
 
--- h4xoR
+-- h4xxxoR --------------------------------------------------------------------- 
 vim.keymap.set('v', 'p', '"_dP', keymapopts) -- in a visual mode, replace what we selected
                                              -- with what we have in registry
-vim.keymap.set('n', '<s-x>', '"_x', keymapopts) -- when using SHIFT-x to remove a character, do not copy it to the register
+vim.keymap.set('n', '<S-x>', '"_x', keymapopts) -- when using SHIFT-x to remove a character, do not copy it to the register
                                                 -- originaly I just had x here, but I really like the trick of "xp" to swap
-                                                -- two characters in place, for all typos etc..
+
+vim.keymap.set("n", '<leader><S-s>', ":%s/<C-r><C-w>//g<Left><Left>", { noremap = true }) -- proper, replace word under the cursor
+
+vim.keymap.set("n", "<leader><S-c>", function() -- awesome copy to system clipboard
+  local filePath = vim.fn.expand("%:p") -- get file path
+  vim.fn.setreg("*", filePath)          -- copy to the clipboard register "*
+  print(filePath)
+end) -- copy file path to the clipboard register -> hence system clipboard
