@@ -11,7 +11,6 @@ require("packer").startup(function(use)
     -- random stuff
     use "aymericbeaumet/vim-symlink"   -- deals with symlinks correctly
     use "moll/vim-bbye"                -- symlink dependency, required in order to symlink work properly in diff mode, https://github.com/moll/vim-bbye
-    use "tpope/vim-surround"           -- surround plugin
     use "szw/vim-maximizer"            -- split window maximizer, https://github.com/szw/vim-maximizer
     use "kyazdani42/nvim-web-devicons" -- icons, you must install nerdfonts first: https://www.nerdfonts.com/
     use "ThePrimeagen/harpoon"         -- https://github.com/ThePrimeagen/harpoon
@@ -20,9 +19,6 @@ require("packer").startup(function(use)
     use "tpope/vim-fugitive"      -- https://github.com/tpope/vim-fugitive
     use "lewis6991/gitsigns.nvim" -- https://github.com/lewis6991/gitsigns.nvim
     use "sindrets/diffview.nvim"  -- https://github.com/sindrets/diffview.nvim
-
-    -- nerd tree
-    use "kyazdani42/nvim-tree.lua" -- https://github.com/kyazdani42/nvim-tree.lua
 
     -- lualine, quick and light vim status line
     use "nvim-lualine/lualine.nvim" -- https://github.com/nvim-lualine/lualine.nvim
@@ -43,8 +39,6 @@ require("packer").startup(function(use)
     use "hrsh7th/cmp-nvim-lsp" -- https://github.com/hrsh7th/cmp-nvim-lsp
     use "saadparwaiz1/cmp_luasnip"  -- https://github.com/saadparwaiz1/cmp_luasnip
 
-    -- treesitter
-    use {"nvim-treesitter/nvim-treesitter", run = ':TSUpdate'} -- https://github.com/nvim-treesitter/nvim-treesitter
 
     -- lsp
     use "williamboman/mason.nvim"           -- https://github.com/williamboman/mason.nvim
@@ -143,47 +137,6 @@ cmp.setup.cmdline(':', {
     { name = 'path' },
   }
 })
--- }}}
--- treesitter {{{
-require("nvim-treesitter.configs").setup {
-    -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-    ensure_installed = {
-        "bash",
-        "c", -- this is part of the nvim installation anyway, lib/nvim/parser/c.so, but I'm adding it here explicitly
-        "comment", -- for TODO highlighting
-        "dockerfile",
-        "go",
-        "hcl",
-        "json",
-        "jsonnet",
-        "lua", -- part of the nvim installation, lib/nvim/parser/lua.so
-        "markdown",
-        "query", -- part of the nvim installation, lib/nvim/parser/query.so
-        "terraform",
-        "vim", -- part of the nvim installation, lib/nvim/parser/vim.so
-        "vimdoc", -- part of the nvim installation, lib/nvim/parser/vimdoc.so
-        "yaml",
-    },
-    -- ensure_installed = "all",
-    -- ignore_install = { "..." },
-    sync_install = true, -- install parsers synchronously
-    auto_install = true,  -- automatically install missing parsers when entering buffer
-                          -- once I figure out all parsers I need please consider disabling
-
-    highlight = {
-        enable = true,
-        -- disable = { "..." },
-    },
-
-    autopairs = {
-        enable = false,
-    },
-
-    indent = {
-        enable = false,
-        -- disable = { "...", "..." },
-    }
-}
 -- }}}
 -- telescope {{{
 -- :help telescope
@@ -401,18 +354,11 @@ require('markview').setup({
 
 -- plugin remaps {{{
 
--- nvim-tree
-vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<cr>')
-vim.keymap.set('n', '<leader>f', ':NvimTreeFindFileToggle<cr>')
-
 -- indent
 vim.keymap.set('n', '<leader>I', ':IBLToggle<cr>')
 
 -- maximizer
 vim.keymap.set('n', '<leader>sm', ':MaximizerToggle<cr>')
-
--- treesitter
-vim.keymap.set('n', '<leader>tt', ':TSToggle highlight<cr>')
 
 -- harpoon
 vim.keymap.set('n', '<leader>rr', ':lua require("harpoon.ui").toggle_quick_menu()<cr>')
@@ -520,11 +466,6 @@ end
 :set textwidth=0
 :set wrapmargin=0
 
-{{{ surround
-ds"  -- remove surrounded " ... "example"
-cs"' -- replace " with '    ... "example"
-}}}
-
 {{{ fugitive
 # add patch
 - go to status `:G`
@@ -592,18 +533,6 @@ c     : check_package_version
 U     : update_all_packages
 C     : check_outdated_packages
 X     : uninstall_package
-}}}
-
-{{{ nvim-tree
--- keybindings
-E     : expand all
-W     : collaps all
-H     : toggle .dot files
-J     : last sibling
-K     : first sibling
-P     : parent
-m     : mark
-bd    : delete marked
 }}}
 
 {{{ :!execute a command

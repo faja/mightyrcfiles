@@ -62,6 +62,7 @@ vim.opt.foldmethod = "marker"   -- folding with {{{ }}}
 
 -- list aka show whitspace characters
 vim.opt.list = true             -- show trailing spaces and tabs
+vim.opt.listchars = { trail = '·', tab = '> ', nbsp = '+'}
                                 -- yeah, I quite like it, but don't like the belows
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
@@ -76,3 +77,5 @@ vim.opt.completeopt = { "menuone", "noselect" }         -- for cmp, from lunar
 -- use vertical split by default when u dd, because nie chce mi sie klikac
 -- dv aby zrobic vertical split przy difie, dd jest szybsze i milsze w uzyciu
 vim.opt.diffopt:append('vertical') -- git
+	
+      

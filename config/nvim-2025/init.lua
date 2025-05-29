@@ -13,9 +13,8 @@ hence to start fresh
 
 weekly maintenance
     :Lazy --> U
-
--- :TSUpdateSync
--- :Mason -> U
+    :TSUpdateSync
+-- :Mason -> U ??
 
 --]]
 
