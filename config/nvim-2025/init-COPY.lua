@@ -15,11 +15,6 @@ require("packer").startup(function(use)
     use "kyazdani42/nvim-web-devicons" -- icons, you must install nerdfonts first: https://www.nerdfonts.com/
     use "ThePrimeagen/harpoon"         -- https://github.com/ThePrimeagen/harpoon
 
-    -- git
-    use "tpope/vim-fugitive"      -- https://github.com/tpope/vim-fugitive
-    use "lewis6991/gitsigns.nvim" -- https://github.com/lewis6991/gitsigns.nvim
-    use "sindrets/diffview.nvim"  -- https://github.com/sindrets/diffview.nvim
-
     -- lualine, quick and light vim status line
     use "nvim-lualine/lualine.nvim" -- https://github.com/nvim-lualine/lualine.nvim
 
@@ -58,9 +53,6 @@ end)
 -- }}}
 
 -- plugin config {{{
--- git {{{
-require("gitsigns").setup()
--- }}}
 -- lualine {{{
 require('lualine').setup()
 -- }}}
