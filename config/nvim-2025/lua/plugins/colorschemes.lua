@@ -15,7 +15,6 @@ return {
     },
     {
         "lunarvim/onedarker.nvim", -- https://github.com/lunarvim/Onedarker.nvim
-         opts={ transparent = true },
          lazy = true,
     },
 }

@@ -66,9 +66,11 @@ vim.keymap.set('v', 'p', '"_dP', keymapopts) -- in a visual mode, replace what w
 vim.keymap.set('n', '<S-x>', '"_x', keymapopts) -- when using SHIFT-x to remove a character, do not copy it to the register
                                                 -- originaly I just had x here, but I really like the trick of "xp" to swap
 
-vim.keymap.set("n", '<leader><S-s>', ":%s/<C-r><C-w>//g<Left><Left>", { noremap = true }) -- proper, replace word under the cursor
+-- replace word under the cursor
+vim.keymap.set("n", '<leader><S-s>', ":%s/<C-r><C-w>//g<Left><Left>", { noremap = true })
 
-vim.keymap.set("n", "<leader><S-c>", function() -- awesome copy to system clipboard
+-- copy filepath
+vim.keymap.set("n", "<leader><S-c>", function()
   local filePath = vim.fn.expand("%:p") -- get file path
   vim.fn.setreg("*", filePath)          -- copy to the clipboard register "*
   print(filePath)

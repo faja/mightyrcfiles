@@ -23,4 +23,6 @@ require("core/lesssgo") -- general vim options
 require("lazyyy")       -- lazy plugin manager
                         -- calling it lazyyy (3x y) - to avoid name clash
 require("core/colors")  -- anything colour related, colorscheme and diff colours
-require("core/keymaps") -- my custom keymaps
+require("core/keymaps") -- my custom keymaps, note a lot of keymaps are configured
+                        -- next to the plugins
+require("core/autocmd") -- my custom auto commands

@@ -1,25 +1,4 @@
--- plugin install {{{
-            --
 require("packer").startup(function(use)
-
-    -- bunch of lua functions that other plugins are using, eg telescope
-    use "nvim-lua/plenary.nvim" -- https://github.com/nvim-lua/plenary.nvim
-
-    -- language pack for syntax and filetypes
-    use "sheerun/vim-polyglot" -- https://github.com/sheerun/vim-polyglot
-
-    -- random stuff
-    use "aymericbeaumet/vim-symlink"   -- deals with symlinks correctly
-    use "moll/vim-bbye"                -- symlink dependency, required in order to symlink work properly in diff mode, https://github.com/moll/vim-bbye
-    use "szw/vim-maximizer"            -- split window maximizer, https://github.com/szw/vim-maximizer
-    use "kyazdani42/nvim-web-devicons" -- icons, you must install nerdfonts first: https://www.nerdfonts.com/
-    use "ThePrimeagen/harpoon"         -- https://github.com/ThePrimeagen/harpoon
-
-    -- lualine, quick and light vim status line
-    use "nvim-lualine/lualine.nvim" -- https://github.com/nvim-lualine/lualine.nvim
-
-    -- indent
-    use "lukas-reineke/indent-blankline.nvim" -- https://github.com/lukas-reineke/indent-blankline.nvim
 
     -- telescope! ...note! useful functions require `rg` binary to be installed on the system
     use "nvim-telescope/telescope.nvim"                             -- telescope, https://github.com/nvim-telescope/telescope.nvim
@@ -34,7 +13,6 @@ require("packer").startup(function(use)
     use "hrsh7th/cmp-nvim-lsp" -- https://github.com/hrsh7th/cmp-nvim-lsp
     use "saadparwaiz1/cmp_luasnip"  -- https://github.com/saadparwaiz1/cmp_luasnip
 
-
     -- lsp
     use "williamboman/mason.nvim"           -- https://github.com/williamboman/mason.nvim
     use "williamboman/mason-lspconfig.nvim" -- https://github.com/williamboman/mason-lspconfig.nvim
@@ -45,29 +23,9 @@ require("packer").startup(function(use)
     use "onsails/lspkind-nvim"              -- https://github.com/onsails/lspkind-nvim
     use "ray-x/lsp_signature.nvim"          -- https://github.com/ray-x/lsp_signature.nvim
 
-    -- markdown
-    use "OXY2DEV/markview.nvim"             -- https://github.com/OXY2DEV/markview.nvim
-    use "brianhuster/live-preview.nvim"     -- https://github.com/brianhuster/live-preview.nvim
-      -- :h livepreview
 end)
--- }}}
 
 -- plugin config {{{
--- lualine {{{
-require('lualine').setup()
--- }}}
--- devicons {{{
-require('nvim-web-devicons').setup()
--- }}}
--- indent {{{
-require("ibl").setup {
-    -- help :ibl.config
-    enabled = false,
-    indent = {
-      char = {'|', '¦', '┆', '┊'},
-    },
-}
--- }}}
 -- cmp {{{
 local cmp = require("cmp")
 local lspkind = require("lspkind")
@@ -329,40 +287,9 @@ require("lsp_signature").setup {
     toggle_key = '<M-x>',
 }
 -- }}}
-require("harpoon").setup({
-    menu = {
-        -- width = vim.api.nvim_win_get_width(0) - 4,
-        width = 120,
-    }
-})
-
-require('livepreview.config').set()
-require('markview').setup({
-    preview = {
-        enable = false,
-    }
-})
 -- }}}
 
 -- plugin remaps {{{
-
--- indent
-vim.keymap.set('n', '<leader>I', ':IBLToggle<cr>')
-
--- maximizer
-vim.keymap.set('n', '<leader>sm', ':MaximizerToggle<cr>')
-
--- harpoon
-vim.keymap.set('n', '<leader>rr', ':lua require("harpoon.ui").toggle_quick_menu()<cr>')
-vim.keymap.set('n', '<leader>rR', ':Telescope harpoon marks<cr>')
-vim.keymap.set('n', '<leader>ra', ':lua require("harpoon.mark").add_file()<cr>')
-vim.keymap.set('n', '<leader>rm', ':lua require("harpoon.ui").nav_next()<cr>')
-vim.keymap.set('n', '<leader>rp', ':lua require("harpoon.ui").nav_prev()<cr>')
-vim.keymap.set('n', '<leader>r1', ':lua require("harpoon.ui").nav_file(1)<cr>')
-vim.keymap.set('n', '<leader>r2', ':lua require("harpoon.ui").nav_file(2)<cr>')
-vim.keymap.set('n', '<leader>r3', ':lua require("harpoon.ui").nav_file(3)<cr>')
-vim.keymap.set('n', '<leader>r4', ':lua require("harpoon.ui").nav_file(4)<cr>')
-
 -- telescope {{{
 vim.keymap.set('n', '<leader>O', ':Telescope find_files hidden=true<cr>')
 vim.keymap.set('n', '<leader>o', ':Telescope git_files hidden=true<cr>')
@@ -376,7 +303,6 @@ vim.keymap.set('n', '<leader>??', '<cmd>lua require("telescope.builtin").grep_st
 vim.keymap.set('n', '<leader>?/', '<cmd>lua require("telescope.builtin").grep_string( { search = vim.fn.input("Grep for > ") } )<cr>') -- search for ... whatever you type
 vim.keymap.set('n', '<leader>?!', require('telescope.builtin').live_grep) -- lajw grep
 -- }}}
-
 -- git {{{
 vim.keymap.set('n', ']C', '<cmd>Gitsigns next_hunk<cr>')
 vim.keymap.set('n', '[C', '<cmd>Gitsigns prev_hunk<cr>')
@@ -390,7 +316,6 @@ vim.keymap.set('n', '<leader>HU', '<cmd>Gitsigns reset_buffer<cr>')     -- undo 
 -- lets give it a try
 vim.keymap.set('n', '<leader>ig', '<cmd>LazyGit<cr>')
 -- }}}
-
 -- lsp {{{
 -- all on_attach remaps ~> jumpstring:ree2ohh1Thohdael
 
@@ -404,141 +329,4 @@ vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", k
 vim.keymap.set("n", "gq", "<cmd>lua vim.diagnostic.setqflist()<cr>", keymapopts)           -- quick fix list
 
 -- }}}
-
--- }}}
-
--- autocmd {{{
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {pattern='*.nomadtpl', command='set filetype=hcl'})
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {pattern='*.nomad.j2', command='set filetype=hcl'})
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {pattern='docker-compose.y*ml.*', command='set filetype=docker-compose'})
-vim.api.nvim_create_autocmd({"BufWritePre"}, {pattern='*', command=[[%s/\s\+$//e]]}) -- remove trailing white spaces
--- }}}
-
--- LUA HOWTOs {{{
--- simgle line comment
---[[
-  multi line comment
---]]
-
---[[
-
--- requiring
-require("my_custom_stuff") -- that would call ~/.config/nvim/lua/my_custom_stuff.lua
-
-
--- create local variable and reuse it for conciseness
-local opt = vim.opt
-opt.number = true -- instead of vim.opt.number = true
-
-
--- call some function and check the status
-local colorscheme = "xxx"
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-    print("Colorscheme " .. colorscheme .. " not found")
-    return
-end
-
---]]
--- }}}
-
--- VIM TIPS AND TRIX USAGE HOWTO: TODO MOVE THIS TO MANUALS {{{
---[[
-
-<c-w>T - move current window to new tab
-
-:set            - shows vars different from defaults
-:set all        - shows all values
-:set foo?       - shows the value of foo
-:set foo+=opt   - add opt to the value w/o changing others
-:set foo-=opt   - remove opt from value
-:set foo&       - reset foo to default value
-:setlocal foo   - only the current buffers
-
-:set textwidth=0
-:set wrapmargin=0
-
-{{{ fugitive
-# add patch
-- go to status `:G`
-- put cursor on a file, and hit `i`
-- visual block/line you want to add, and use `-` to stage/unstage
-
-# :Git blame
-- `g?` - for help
-- `-`  - reblame at the commit          - this basically means - rerender the file at this particular commit
-- `P`  - reblame at the previous commit - this measn - show me how the file looked like before this one was added
-
-# navigate through the Gclog
-- open a file
-- :Gclog -- %    - this is pretty cool, it will show you all the commits related to this file
-- select a commit you want to interact with
-- navigate to the changed file with `]m`
-- then you can press `o`(- split), `gO` (| split), or `O` (new tab) to open
-    - a diff
-    - how the file looked liek BEFORE the change
-    - how the file looks liek AFTER the change
-
-# :Gedit
-- `:Gedit HASH:file` - opens a file at a specifc commit
-- `:Gedit HASH:%` - opens current file ata specific commit
-}}}
-
-{{{ vim diff (normal diff)
-            ]c - jump to next change
-            [c - jump to prev change
-}}}
-
-{{{ diffview
-# see changes for a single path or file
-  :DiffviewOpen 5618c3e5bf62847c1b9f7420783ec27dd438244e..b386ffca433ed6a49b76147758857d1a4f84caba -- vpc/outputs.tf
-this is equivalent of
-  git diff 5618c3e5bf62847c1b9f7420783ec27dd438244e..b386ffca433ed6a49b76147758857d1a4f84caba vpc/outputs.tf
-
-# see history for current file
-  :DiffviewFileHistory %
-
-# nice flow
-  1. open diffview
-  2. select a file then "gf" to open it in previous tab
-  3. :DiffviewFileHistory %
-
-}}}
-
-{{{ telescope
-
-- TAB - mark an item
-- CTRL+Q - open ALL items in a quick list
-- ALT+Q  - open marked items in a quick list
-
--- search syntax for FZF ~> https://github.com/junegunn/fzf#search-syntax
-- one simple example is: `!foobar` - items that do not include `foobar`
-
-}}}
-
-{{{ mason
--- keybindings
-<CR>  : toggle_package_expand
-i     : install_package
-u     : update_package
-c     : check_package_version
-U     : update_all_packages
-C     : check_outdated_packages
-X     : uninstall_package
-}}}
-
-{{{ :!execute a command
-:!ls        # executes a command `ls` and puts the output to a tmp buffer
-:.!ls       # executes a command `ls` and puts the output to THE CURRENT BUFFER
-
-# visual select a line(s) the !<command> # this will take the selected lines as an input to <command>
-# handy example is to use `jq` to format single line json to pretty printed
-# {"ok": "thisisnotformatedjson"}
-# :'<,'>!jq
-}}}
-
--- how to disable/enable diagnostics
-    :lua vim.diagnostic.disable()
-    :lua vim.diagnostic.enable()
---]]
 -- }}}
