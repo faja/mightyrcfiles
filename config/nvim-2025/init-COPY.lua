@@ -1,9 +1,5 @@
 require("packer").startup(function(use)
 
-    -- telescope! ...note! useful functions require `rg` binary to be installed on the system
-    use "nvim-telescope/telescope.nvim"                             -- telescope, https://github.com/nvim-telescope/telescope.nvim
-    use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'}  -- telescope fzf extension, https://github.com/nvim-telescope/telescope-fzf-native.nvim
-
     -- cmp plugins
     use "L3MON4D3/LuaSnip"          -- https://github.com/L3MON4D3/LuaSnip
     use "hrsh7th/nvim-cmp"     -- https://github.com/hrsh7th/nvim-cmp
@@ -87,33 +83,6 @@ cmp.setup.cmdline(':', {
     { name = 'path' },
   }
 })
--- }}}
--- telescope {{{
--- :help telescope
-require("telescope").setup {
-    defaults = {
-        mappings = {
-            i = {
-                ["<c-k>"] = require("telescope.actions").move_selection_previous,
-                ["<c-j>"] = require("telescope.actions").move_selection_next,
-            }
-        },
-
-        -- adding "--hiden --glob !.git/*" to default vimgrep_arguments, to search in hidden files
-        vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden", "--glob", "!.git/*" },
-    },
-
-    extensions = {
-        fzf = {
-            fuzzy = true,                    -- false will only do exact matching
-            override_generic_sorter = true,  -- override the generic sorter
-            override_file_sorter = true,     -- override the file sorter
-            case_mode = "respect_case",      -- "smart_case" (default), "ignore_case", "respect_case"
-        }
-    }
-}
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("harpoon")
 -- }}}
 -- lsp {{{
 -- TODO TODO TODO
@@ -289,31 +258,13 @@ require("lsp_signature").setup {
 -- }}}
 -- }}}
 
--- plugin remaps {{{
--- telescope {{{
-vim.keymap.set('n', '<leader>O', ':Telescope find_files hidden=true<cr>')
-vim.keymap.set('n', '<leader>o', ':Telescope git_files hidden=true<cr>')
-vim.keymap.set('n', '<leader>b', ':Telescope buffers<cr>')
--- nnoremap <leader>FFn :Telescope find_files cwd=~/.config/nvim<cr>
--- nnoremap <leader>FF.. :Telescope find_files cwd=..<cr>
-
--- grep stuff
--- belows require ripgrep binary to be awailable
-vim.keymap.set('n', '<leader>??', '<cmd>lua require("telescope.builtin").grep_string( { search = vim.fn.expand("<cword>") } )<cr>') -- search for word under the cursor
-vim.keymap.set('n', '<leader>?/', '<cmd>lua require("telescope.builtin").grep_string( { search = vim.fn.input("Grep for > ") } )<cr>') -- search for ... whatever you type
-vim.keymap.set('n', '<leader>?!', require('telescope.builtin').live_grep) -- lajw grep
--- }}}
--- lsp {{{
+-- plugin remaps
+-- lsp
 -- all on_attach remaps ~> jumpstring:ree2ohh1Thohdael
-
 vim.keymap.set("n", "gL", "<cmd>LspInfo<cr>", keymapopts)
 vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", keymapopts)
-
 -- :help vim.diagnostic.<TAB>
 vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", keymapopts)          -- show diagnostic floating window
 vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", keymapopts) -- jump to next diagnostic in buffer
 vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", keymapopts) -- jump to previous diagnostic in buffer
 vim.keymap.set("n", "gq", "<cmd>lua vim.diagnostic.setqflist()<cr>", keymapopts)           -- quick fix list
-
--- }}}
--- }}}

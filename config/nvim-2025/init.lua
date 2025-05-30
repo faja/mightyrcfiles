@@ -18,6 +18,16 @@ weekly maintenance
 
 --]]
 
+--[[
+
+NOTE:
+  for better experience please install:
+    fzf
+    ripgrep
+    bat
+
+--]]
+
 require("core/lesssgo") -- general vim options
                         -- before even setting up plugins
 require("lazyyy")       -- lazy plugin manager
