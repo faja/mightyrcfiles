@@ -1,16 +1,33 @@
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+    conflictstyle = zdiff3
+
 [user]
     name = faja
     email = mcabaj@gmail.com
+
 [pull]
     ff = only
+
 [diff]
 	tool = nvimdiff
+
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
-[color "diff"]
-	meta = white black bold
-	new = cyan black bold
-	old = red black bold
+
+#[color "diff"]
+#	meta = white black bold
+#	new = cyan black bold
+#	old = red black bold
 
 #[url "git@github.com:"]
 #	insteadOf = https://github.com/

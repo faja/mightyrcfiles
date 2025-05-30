@@ -70,10 +70,5 @@ vim.opt.listchars = { trail = '·', tab = '> ', nbsp = '+'}
 -- TODO:
 -- plugins related
 -- cmp
-vim.opt.completeopt = { "menuone", "noselect" }         -- for cmp, from lunar
+-- vim.opt.completeopt = { "menuone", "noselect" }         -- for cmp, from lunar
 -- vim.opt.completeopt = { "menu", "menuone", "noselect" } -- for cmp, my old
-
--- git
--- use vertical split by default when u dd, because nie chce mi sie klikac
--- dv aby zrobic vertical split przy difie, dd jest szybsze i milsze w uzyciu
-vim.opt.diffopt:append('vertical') -- git

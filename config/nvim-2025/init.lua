@@ -25,6 +25,7 @@ NOTE:
     fzf
     ripgrep
     bat
+    git-delta
 
 --]]
 

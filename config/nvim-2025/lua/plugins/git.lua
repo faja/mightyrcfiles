@@ -2,6 +2,9 @@ return {
     {
         -- https://github.com/tpope/vim-fugitive
         "tpope/vim-fugitive",
+        init = function()
+            vim.opt.diffopt:append('vertical') -- use vertical split by default when u dd
+        end
     },
 
     {
