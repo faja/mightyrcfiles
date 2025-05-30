@@ -303,19 +303,6 @@ vim.keymap.set('n', '<leader>??', '<cmd>lua require("telescope.builtin").grep_st
 vim.keymap.set('n', '<leader>?/', '<cmd>lua require("telescope.builtin").grep_string( { search = vim.fn.input("Grep for > ") } )<cr>') -- search for ... whatever you type
 vim.keymap.set('n', '<leader>?!', require('telescope.builtin').live_grep) -- lajw grep
 -- }}}
--- git {{{
-vim.keymap.set('n', ']C', '<cmd>Gitsigns next_hunk<cr>')
-vim.keymap.set('n', '[C', '<cmd>Gitsigns prev_hunk<cr>')
-vim.keymap.set('n', '<leader>Hp', '<cmd>Gitsigns preview_hunk<cr>')
-vim.keymap.set('n', '<leader>Hs', '<cmd>Gitsigns stage_hunk<cr>')
-vim.keymap.set('n', '<leader>HS', '<cmd>Gitsigns stage_buffer<cr>')
-vim.keymap.set('n', '<leader>Hu', '<cmd>Gitsigns undo_stage_hunk<cr>')
-vim.keymap.set('n', '<leader>Hu', '<cmd>Gitsigns reset_hunk<cr>')       -- undo single hunk
-vim.keymap.set('n', '<leader>HU', '<cmd>Gitsigns reset_buffer<cr>')     -- undo whole file
-
--- lets give it a try
-vim.keymap.set('n', '<leader>ig', '<cmd>LazyGit<cr>')
--- }}}
 -- lsp {{{
 -- all on_attach remaps ~> jumpstring:ree2ohh1Thohdael
 
