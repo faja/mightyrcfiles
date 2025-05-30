@@ -14,7 +14,8 @@ return {
         -- grep
         {"<leader>fw", function() require("fzf-lua").grep_cword() end },   -- search word under the cursor
         {"<leader>fW", function() require("fzf-lua").grep_cword() end },   -- search WORD under the cursor
-        {"<leader>fv", function() require("fzf-lua").grep_visual() end },  -- search visual selection
+        {"<leader>ff", function() require("fzf-lua").grep_visual() end, mode="v" },  -- search visual selection -- this is amazing
+
         {"<leader>f/", function() require("fzf-lua").grep() end },         -- search for whatever you type
         {"<leader>fj", function() require("fzf-lua").grep_project() end }, -- search for whatever you type
         {"<leader>fl", function() require("fzf-lua").live_grep() end },    -- live grep
