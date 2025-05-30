@@ -1,16 +1,3 @@
-[core]
-    pager = delta
-
-[interactive]
-    diffFilter = delta --color-only
-
-[delta]
-    navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
-
-[merge]
-    conflictstyle = zdiff3
-
 [user]
     name = faja
     email = mcabaj@gmail.com
@@ -19,7 +6,7 @@
     ff = only
 
 [diff]
-	tool = nvimdiff
+    tool = nvimdiff
 
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
@@ -33,3 +20,21 @@
 #	insteadOf = https://github.com/
 #[diff "sopsdiffer"]
 #	textconv = sops -d
+
+################################################################################
+# all the below are suggested configuration by git-delta
+# https://github.com/dandavison/delta
+# I'm really still thinking if I actually like it or not, the delta
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    side-by-side = true
+
+[merge]
+    conflictstyle = zdiff3
