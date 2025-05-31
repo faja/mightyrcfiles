@@ -26,109 +26,103 @@ return {
             'saghen/blink.cmp',
         },
 
-        -- TODO:
-        -- my old keybinds
-        -- -- all on_attach remaps ~> jumpstring:ree2ohh1Thohdael
-        -- vim.keymap.set("n", "gL", "<cmd>LspInfo<cr>", keymapopts)
-        -- vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", keymapopts)
+        config = function()
+            -- NOTE: here is the part where we define what binaries
+            --       some LSPs I manage manually via OS package, so there are not
+            --       listed here, but yet, I'm configuring them in the `servers`
+            --       variable
+            local binaries = {
+                -- LSPs
+                "gopls",
+                "lua-language-server",
+                -- NON LSPs
+                "stylua",
+            }
 
-        --config = function()
-        --    -- NOTE: here is the part where we define what binaries
-        --    --       some LSPs I manage manually via OS package, so there are not
-        --    --       listed here, but yet, I'm configuring them in the `servers`
-        --    --       variable
-        --    local binaries = {
-        --        -- LSPs
-        --        "gopls",
-        --        "lua-language-server",
-        --        -- NON LSPs
-        --        "stylua",
-        --    }
+            -- lets ask mason to install both LSP and NON LSP binaries
+            require("mason-tool-installer").setup { ensure_installed = binaries }
 
-        --    -- lets ask mason to install both LSP and NON LSP binaries
-        --    require("mason-tool-installer").setup { ensure_installed = binaries }
+            -- NOTE: here is the of LSPs I wanna use
+            -- :help lspconfig-all - for a list of all the pre-configured LSPs
+            local servers = {
 
-        --    -- NOTE: here is the of LSPs I wanna use
-        --    -- :help lspconfig-all - for a list of all the pre-configured LSPs
-        --    local servers = {
+                --  Add any additional override configuration in the following tables. Available keys are:
+                --  - cmd (table): Override the default command used to start the server
+                --  - filetypes (table): Override the default list of associated filetypes for the server
+                --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+                --  - settings (table): Override the default settings passed when initializing the server.
+                --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
-        --        --  Add any additional override configuration in the following tables. Available keys are:
-        --        --  - cmd (table): Override the default command used to start the server
-        --        --  - filetypes (table): Override the default list of associated filetypes for the server
-        --        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-        --        --  - settings (table): Override the default settings passed when initializing the server.
-        --        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+                gopls = {},
+                lua_ls = { -- TODO: remove this LSP, just for testing purposes
+                    -- cmd = { ... },
+                    -- filetypes = { ... },
+                    -- capabilities = {},
+                    settings = {
+                        Lua = {
+                            completion = {
+                                callSnippet = 'Replace',
+                            },
+                            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                            -- diagnostics = { disable = { 'missing-fields' } },
+                        },
+                    },
+                },
+            }
 
-        --        gopls = {},
-        --        lua_ls = { -- TODO: remove this LSP, just for testing purposes
-        --            -- cmd = { ... },
-        --            -- filetypes = { ... },
-        --            -- capabilities = {},
-        --            settings = {
-        --                Lua = {
-        --                    completion = {
-        --                        callSnippet = 'Replace',
-        --                    },
-        --                    -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-        --                    -- diagnostics = { disable = { 'missing-fields' } },
-        --                },
-        --            },
-        --        },
-        --    }
+            -- NOTE: here is the part where we actually tells vim to attache/start an LSP
+            local capabilities = require('blink.cmp').get_lsp_capabilities() -- extend capabilities from blink
+            require('mason-lspconfig').setup {
+                ensure_installed = {},                                       -- explicitly set to an empty table, managed via `binaries`
+                automatic_installation = false,
+                handlers = {
+                    function(server_name)
+                        local server = servers[server_name] or {}
+                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+                        require('lspconfig')[server_name].setup(server)
+                    end,
+                },
+            }
 
-        --    -- NOTE: here is the part where we actually tells vim to attache/start an LSP
-        --    local capabilities = require('blink.cmp').get_lsp_capabilities() -- extend capabilities from blink
-        --    require('mason-lspconfig').setup {
-        --        ensure_installed = {},                                       -- explicitly set to an empty table, managed via `binaries`
-        --        automatic_installation = false,
-        --        handlers = {
-        --            function(server_name)
-        --                local server = servers[server_name] or {}
-        --                server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        --                require('lspconfig')[server_name].setup(server)
-        --            end,
-        --        },
-        --    }
+            -- NOTE: just a quick "Diagnostic Config" setup
+            -- :help vim.diagnostic.Opts
+            vim.diagnostic.config {
+                severity_sort = true,
+                float = { border = 'rounded', source = 'if_many' },
+                underline = { severity = vim.diagnostic.severity.ERROR },
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = '󰅚 ',
+                        [vim.diagnostic.severity.WARN] = '󰀪 ',
+                        [vim.diagnostic.severity.INFO] = '󰋽 ',
+                        [vim.diagnostic.severity.HINT] = '󰌶 ',
+                    },
+                },
+                virtual_text = false, -- i don't want the annoying ghost message, just an icon on the left
+            }
 
-        --    -- NOTE: just a quick "Diagnostic Config" setup
-        --    -- :help vim.diagnostic.Opts
-        --    vim.diagnostic.config {
-        --        severity_sort = true,
-        --        float = { border = 'rounded', source = 'if_many' },
-        --        underline = { severity = vim.diagnostic.severity.ERROR },
-        --        signs = {
-        --            text = {
-        --                [vim.diagnostic.severity.ERROR] = '󰅚 ',
-        --                [vim.diagnostic.severity.WARN] = '󰀪 ',
-        --                [vim.diagnostic.severity.INFO] = '󰋽 ',
-        --                [vim.diagnostic.severity.HINT] = '󰌶 ',
-        --            },
-        --        },
-        --        virtual_text = false, -- i don't want the annoying ghost message, just an icon on the left
-        --    }
+            --vim.api.nvim_create_autocmd('LspAttach', {
+            --    group = vim.api.nvim_create_augroup('generic-lsp-attach', { clear = true }),
+            --    callback = function(event)
+            --        local keymapopts = { buffer = event.buf, noremap = true, silent = true }
 
-        --    --vim.api.nvim_create_autocmd('LspAttach', {
-        --    --    group = vim.api.nvim_create_augroup('generic-lsp-attach', { clear = true }),
-        --    --    callback = function(event)
-        --    --        local keymapopts = { buffer = event.buf, noremap = true, silent = true }
-
-        --    --        -- NOTE: diagnostics keymaps
-        --    --        -- :help vim.diagnostic.<TAB>
-        --    --        vim.keymap.set("n", "gq", vim.diagnostic.setqflist, keymapopts)  -- show float
-        --    --        vim.keymap.set("n", "gl", vim.diagnostic.open_float, keymapopts) -- quick fix list
-        --    --        vim.keymap.set("n", "gz", function()                             -- toggle diagnostics
-        --    --            if vim.diagnostic.is_enabled() then
-        --    --                vim.diagnostic.enable(false)
-        --    --            else
-        --    --                vim.diagnostic.enable()
-        --    --            end
-        --    --        end, keymapopts)
-        --    --        -- these two seems to be already set
-        --    --        -- vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", keymapopts) -- jump to next diagnostic in buffer
-        --    --        -- vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", keymapopts) -- jump to previous diagnostic in buffer
-        --    --    end,
-        --    --})
-        --end,
+            --        -- NOTE: diagnostics keymaps
+            --        -- :help vim.diagnostic.<TAB>
+            --        vim.keymap.set("n", "gq", vim.diagnostic.setqflist, keymapopts)  -- show float
+            --        vim.keymap.set("n", "gl", vim.diagnostic.open_float, keymapopts) -- quick fix list
+            --        vim.keymap.set("n", "gz", function()                             -- toggle diagnostics
+            --            if vim.diagnostic.is_enabled() then
+            --                vim.diagnostic.enable(false)
+            --            else
+            --                vim.diagnostic.enable()
+            --            end
+            --        end, keymapopts)
+            --        -- these two seems to be already set
+            --        -- vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", keymapopts) -- jump to next diagnostic in buffer
+            --        -- vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", keymapopts) -- jump to previous diagnostic in buffer
+            --    end,
+            --})
+        end,
 
         ----#--   vim.api.nvim_create_autocmd('LspAttach', {
         ----#--     group = vim.api.nvim_create_augroup('generic-lsp-attach', { clear = true }),

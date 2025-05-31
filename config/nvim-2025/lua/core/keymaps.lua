@@ -3,66 +3,57 @@
 just my custom generic keymaps,
 plugin ones are configured next to plugins confuguration, but here is the list:
 
--- FILE EXPLORERS
-leader><C-n>  --  nvim tree toggle
-leader>F      --  nvim tree find file toggle
-
--- DIAGNOSTICS
-                    vim.keymap.set("n", "gq", vim.diagnostic.setqflist, keymapopts)    -- show float
-                    vim.keymap.set("n", "gl", vim.diagnostic.open_float, keymapopts)   -- quick fix list
-                    vim.keymap.set("n", "gz", function() -- toggle diagnostics
---
--- FZF LUA
---
-        {"<leader>ff", function() require("fzf-lua").files() end },
-        {"<leader>fF", function() require("fzf-lua").git_files() end },
-        {"<leader>fo", function() require("fzf-lua").oldfiles() end },
-        {"<leader>fc", function() require("fzf-lua").files({ cwd = "~/.config/nvim" }) end },
-
-        -- grep
-        {"<leader>fw", function() require("fzf-lua").grep_cword() end },   -- search word under the cursor
-        {"<leader>fW", function() require("fzf-lua").grep_cword() end },   -- search WORD under the cursor
-        {"<leader>ff", function() require("fzf-lua").grep_visual() end, mode="v" },  -- search visual selection -- this is amazing
-
-        {"<leader>f/", function() require("fzf-lua").grep() end },         -- search for whatever you type
-        {"<leader>fj", function() require("fzf-lua").grep_project() end }, -- search for whatever you type
-        {"<leader>fl", function() require("fzf-lua").live_grep() end },    -- live grep
-
-        -- misc
-        {"<leader>fh", function() require("fzf-lua").helptags() end },
-        {"<leader>fb", function() require("fzf-lua").builtin() end },
-
-        -- git
-        {"<leader>fi", function() require("fzf-lua").git_commits() end },  -- just list commits
-        {"<leader>fI", function() require("fzf-lua").git_bcommits() end }, -- list commits for current buffer - nice1
-
--- GIT
-            { "]C",         "<cmd>Gitsigns next_hunk<cr>" },
-            { "[C",         "<cmd>Gitsigns prev_hunk<cr>" },
-            { "<leader>Hp", "<cmd>Gitsigns preview_hunk<cr>" },
-            { "<leader>Hs", "<cmd>Gitsigns stage_hunk<cr>" },
-            { "<leader>HS", "<cmd>Gitsigns stage_buffer<cr>" },
-            { "<leader>Hu", "<cmd>Gitsigns reset_hunk<cr>" },   -- undo single hunk
-            { "<leader>HU", "<cmd>Gitsigns reset_buffer<cr>" }, -- undo whole file
-
--- HARPOON
-    keys = {
-        { "<leader>rr", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end },
-
-        { "<leader>ra", function() require("harpoon"):list():add() end },
-        { "<leader>rm", function() require("harpoon"):list():next({ ui_nav_wrap = true }) end },
-        { "<leader>rp", function() require("harpoon"):list():prev({ ui_nav_wrap = true }) end },
-
-        { "<leader>1", function() require("harpoon"):list():select(1) end },
-        { "<leader>2", function() require("harpoon"):list():select(2) end },
-        { "<leader>3", function() require("harpoon"):list():select(3) end },
-        { "<leader>4", function() require("harpoon"):list():select(4) end },
-
--- MISC
+-- FILE EXPLORER {{{
+leader><C-n>  -- nvim tree toggle
+leader>F      -- nvim tree find file toggle
+}}}
+-- DIAGNOSTICS {{{
+gl  -- diagnostics floating window
+gq  -- diagnostics to quick fix list
+gz  -- toggle diagnostics
+}}}
+-- FZF LUA {{{
+-- find
+<leader>ff    -- files
+<leader>fF    -- git files
+<leader>fo    -- recently opened files
+<leader>fc    -- nvim config dir
+-- grep
+<leader>ff    -- V MODE -- search visual selection -- this is amazing
+<leader>f/    -- search for whatever you type
+<leader>fj    -- project lines grep
+<leader>fl    -- live grep
+-- misc
+<leader>fh    -- help tags
+<leader>fb    -- fzf-lua builtins
+-- git
+<leader>fi    -- git commits
+<leader>fI    -- git commits but for current buffer only - nice1
+}}}
+-- GIT {{{
+]C           -- next hunk
+[C           -- previous hunk
+<leader>Hp   -- preview/diff single hunk
+<leader>Hs   -- stage single hunk
+<leader>HS   -- stage all hunks
+<leader>Hu   -- undo single hunk
+<leader>HU   -- undo all hunks
+}}}
+-- HARPOON {{{
+<leader>rr  -- open harpoon menu
+<leader>ra  -- add
+<leader>rm  -- next
+<leader>rp  -- preview
+<leader>1   -- jump to 1
+<leader>2   -- jump to 2
+<leader>3   -- jump to 3
+<leader>4   -- jump to 4
+}}}
+-- MISC {{{
 <leader>I    -- toggle indentation guides
 <leader>sm   -- window maximizer
 <leader>ts   -- toggle treesitter highlighting
-
+}}}
 --]]
 
 local keymapopts = { noremap = true, silent = true }

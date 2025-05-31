@@ -2,7 +2,7 @@
 
 ```sh
 PATH_TO_MIGHTYRCFILES_REPO=...
-
+# TODO
 # ---------------------------------------------------------------------------- #
 # nvim
 rm -rf ~/.config/nvim  ~/.local/share/nvim ~/.cache/nvim/
