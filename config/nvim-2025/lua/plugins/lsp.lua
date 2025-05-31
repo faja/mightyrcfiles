@@ -33,6 +33,11 @@ return {
 				-- "jsonnet_ls",
 				-- "terraformls",
 				-- "tflint",
+				-- WHAT I USED TO HAVE FOR NULL LS
+				-- "goimports",
+				-- "shellcheck",
+				-- "shfmt", -- beautysh ?
+				-- "yamllint",
 			}
 
 			-- lets ask mason to install both LSP and NON LSP binaries

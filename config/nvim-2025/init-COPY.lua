@@ -74,15 +74,6 @@ cmp.setup.cmdline(":", {
 
 -- lsp {{{
 
-require("mason-null-ls").setup({
-	ensure_installed = {
-		"goimports",
-		"shellcheck",
-		"shfmt", -- beautysh ?
-		"yamllint",
-	},
-})
-
 -- on_attach {{{
 local on_attach = function(client, bufnr)
 	local keymap = vim.keymap
@@ -195,7 +186,4 @@ null_ls.setup({
 
 -- }}}
 
-require("lsp_signature").setup({
-	toggle_key = "<M-x>",
-})
 -- }}}
