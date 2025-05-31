@@ -30,32 +30,34 @@ return {
             },
         },
         keys = {
-            { "<leader><C-n>", "<cmd>NvimTreeToggle<cr>" },
-            { "<leader><C-f>", "<cmd>NvimTreeFindFileToggle<cr>" },
+            { "<C-n>", "<cmd>NvimTreeToggle<cr>" },
+            { "<leader>F", "<cmd>NvimTreeFindFileToggle<cr>" },
         },
     },
-    {
-        -- https://github.com/echasnovski/mini.files
-        "echasnovski/mini.files",
-        version = false,
-        opts = {
-            mappings = {
-                -- just the other way round as the defaults
-                go_in_plus = "l",
-                go_in = "L",
-                go_out_plus = "h",
-                go_out = "H",
-            },
-        },
-        keys = {
-            { "<C-n>", "<cmd>lua MiniFiles.open()<cr>" },
-            {
-                -- open minifiles and point to current buffer
-                "<leader>F", function()
-                    MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-                    MiniFiles.reveal_cwd()
-                end
-            },
-        },
-    },
+    -- NOTE: I'm not sure if I like it
+    -- disabling
+    -- {
+    --     -- https://github.com/echasnovski/mini.files
+    --     "echasnovski/mini.files",
+    --     version = false,
+    --     opts = {
+    --         mappings = {
+    --             -- just the other way round as the defaults
+    --             go_in_plus = "l",
+    --             go_in = "L",
+    --             go_out_plus = "h",
+    --             go_out = "H",
+    --         },
+    --     },
+    --     keys = {
+    --         { "<C-n>", "<cmd>lua MiniFiles.open()<cr>" },
+    --         {
+    --             -- open minifiles and point to current buffer
+    --             "<leader>F", function()
+    --                 MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+    --                 MiniFiles.reveal_cwd()
+    --             end
+    --         },
+    --     },
+    -- },
 }

@@ -5,17 +5,7 @@ plugin ones are configured next to plugins confuguration, but here is the list:
 
 -- FILE EXPLORERS
 leader><C-n>  --  nvim tree toggle
-leader><C-f>  --  nvim tree find file toggle
-
-            { "<C-n>", "<cmd>lua MiniFiles.open()<cr>" },
-            {
-                -- open minifiles and point to current buffer
-                "<leader>F", function()
-                    MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-                    MiniFiles.reveal_cwd()
-                end
-
-        { "<leader>I", ":IBLToggle<cr>" },
+leader>F      --  nvim tree find file toggle
 
 -- DIAGNOSTICS
                     vim.keymap.set("n", "gq", vim.diagnostic.setqflist, keymapopts)    -- show float
@@ -28,7 +18,6 @@ leader><C-f>  --  nvim tree find file toggle
         {"<leader>fF", function() require("fzf-lua").git_files() end },
         {"<leader>fo", function() require("fzf-lua").oldfiles() end },
         {"<leader>fc", function() require("fzf-lua").files({ cwd = "~/.config/nvim" }) end },
-        {"<leader><leader>", function() require("fzf-lua").buffers() end },
 
         -- grep
         {"<leader>fw", function() require("fzf-lua").grep_cword() end },   -- search word under the cursor
@@ -70,10 +59,10 @@ leader><C-f>  --  nvim tree find file toggle
         { "<leader>4", function() require("harpoon"):list():select(4) end },
 
 -- MISC
+<leader>I    -- toggle indentation guides
 <leader>sm   -- window maximizer
-    keys = {
-        { "<leader>ts", ":TSToggle highlight<cr>" },
-    },
+<leader>ts   -- toggle treesitter highlighting
+
 --]]
 
 local keymapopts = { noremap = true, silent = true }
