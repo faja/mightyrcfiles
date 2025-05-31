@@ -9,19 +9,8 @@ require("packer").startup(function(use)
     use "hrsh7th/cmp-nvim-lsp" -- https://github.com/hrsh7th/cmp-nvim-lsp
     use "saadparwaiz1/cmp_luasnip"  -- https://github.com/saadparwaiz1/cmp_luasnip
 
-    -- lsp
-    use "williamboman/mason.nvim"           -- https://github.com/williamboman/mason.nvim
-    use "williamboman/mason-lspconfig.nvim" -- https://github.com/williamboman/mason-lspconfig.nvim
-    use "jay-babu/mason-null-ls.nvim"       -- https://github.com/jay-babu/mason-null-ls.nvim
-    use "neovim/nvim-lspconfig"             -- https://github.com/neovim/nvim-lspconfig
-    -- use "jose-elias-alvarez/null-ls.nvim"   -- https://github.com/jose-elias-alvarez/null-ls.nvim
-    use "nvimtools/none-ls.nvim"            -- https://github.com/nvimtools/none-ls.nvim
-    use "onsails/lspkind-nvim"              -- https://github.com/onsails/lspkind-nvim
-    use "ray-x/lsp_signature.nvim"          -- https://github.com/ray-x/lsp_signature.nvim
-
 end)
 
--- plugin config {{{
 -- cmp {{{
 local cmp = require("cmp")
 local lspkind = require("lspkind")
@@ -84,13 +73,8 @@ cmp.setup.cmdline(':', {
   }
 })
 -- }}}
--- lsp {{{
--- TODO TODO TODO
---      check available lsp and null-ls servers
---          - https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
---          - https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
---          - https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 
+-- lsp {{{
 
 require("mason").setup()
 require("mason-lspconfig").setup {
@@ -117,29 +101,6 @@ require("mason-null-ls").setup {
     }
 }
 
--- diagnostic config {{{
-local diagnostic_signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
-}
-
-for _, sign in ipairs(diagnostic_signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
-
-vim.diagnostic.config({
-    virtual_text = false, -- i don't want the annoying ghost message, just an icon on the left
-    float = {
-        border = "rounded",
-        -- style = "minimal",
-        -- source = "always",
-        -- header = "",
-        -- prefix = "",
-    },
-})
--- }}}
 -- on_attach {{{
 local on_attach = function(client, bufnr)
     local keymap = vim.keymap
@@ -256,15 +217,3 @@ require("lsp_signature").setup {
     toggle_key = '<M-x>',
 }
 -- }}}
--- }}}
-
--- plugin remaps
--- lsp
--- all on_attach remaps ~> jumpstring:ree2ohh1Thohdael
-vim.keymap.set("n", "gL", "<cmd>LspInfo<cr>", keymapopts)
-vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", keymapopts)
--- :help vim.diagnostic.<TAB>
-vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", keymapopts)          -- show diagnostic floating window
-vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", keymapopts) -- jump to next diagnostic in buffer
-vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", keymapopts) -- jump to previous diagnostic in buffer
-vim.keymap.set("n", "gq", "<cmd>lua vim.diagnostic.setqflist()<cr>", keymapopts)           -- quick fix list
