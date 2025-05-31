@@ -1,7 +1,7 @@
 return {
-    -- -- 
+    -- --
     --[[
-        NOTE: helpers first
+        helpers first
     --]]
     {
         -- bunch of lua functions that other plugins are using, eg telescope
@@ -21,10 +21,10 @@ return {
     },
 
     --[[
-        NOTE: real plugins 
+        real plugins
     --]]
     { "tpope/vim-surround" }, -- https://github.com/tpope/vim-surround
-    { "tpope/vim-sleuth" }, -- https://github.com/tpope/vim-sleuth, bundled in vim-polyglot, hence disabled
+    { "tpope/vim-sleuth" },   -- https://github.com/tpope/vim-sleuth, bundled in vim-polyglot, hence disabled
     {
         -- split window maximizer
         "szw/vim-maximizer", -- https://github.com/szw/vim-maximizer
