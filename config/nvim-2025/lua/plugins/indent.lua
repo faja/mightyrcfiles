@@ -11,7 +11,7 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>I", ":IBLToggle<cr>" },
+			{ "<leader>Ii", ":IBLToggle<cr>" },
 		},
 	},
 	{
@@ -26,5 +26,16 @@ return {
 				end,
 			},
 		},
+		-- keys = {} - for some reason, I can not specify the mapping in keys
+		--             property, hence using init function
+		init = function()
+			vim.keymap.set("n", "<leader>II", function()
+				if vim.g.miniindentscope_disable then
+					vim.g.miniindentscope_disable = false
+				else
+					vim.g.miniindentscope_disable = true
+				end
+			end, { noremap = true, silent = true })
+		end,
 	},
 }
