@@ -1,3 +1,19 @@
+--[[
+	-- quite some keymaps are set up "globally" without "on_attach"
+	keymap.set("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+	-- keymap.set("i", "<leader>L", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts) -- i'm not entirely sure what it does
+	--
+	null_ls.builtins.formatting.shfmt.with({
+		extra_args = { "-i", "2", "-ci", "-bn", "-sr" }, -- for flags https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd#printer-flags
+	}),
+--]]
+--
+-- TODO: rust setup
+--
 return {
 	{
 		-- https://github.com/neovim/nvim-lspconfig
@@ -27,12 +43,17 @@ return {
 				"stylua",
 
 				-- TODO: just for future reference
+				-- "terraformls", !! TODO:
+				-- tflint
+				--
+				-- yamllint
+				--
+				-- shellcheck
+				--
 				-- "bashls"
 				-- "marksman"
 				-- "gopls",
 				-- "jsonnet_ls",
-				-- "terraformls",
-				-- "tflint",
 				-- WHAT I USED TO HAVE FOR NULL LS
 				-- "goimports",
 				-- "shellcheck",

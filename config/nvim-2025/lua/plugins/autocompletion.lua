@@ -24,7 +24,6 @@ return {
 
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
-				fallback = true, -- do not suppress buffer suggestions if there are onse from LSP
 				providers = {
 					buffer = { min_keyword_length = 3 }, -- start buffer completion after 3 chars
 					lsp = { fallbacks = {} }, -- show buffer completions with LSP
