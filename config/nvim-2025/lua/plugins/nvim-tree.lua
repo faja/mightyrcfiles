@@ -34,7 +34,7 @@ return {
 			{ "<leader>F", "<cmd>NvimTreeFindFileToggle<cr>" },
 		},
 	},
-	-- NOTE I'm not sure if I like it
+	-- NOTE: I'm not sure if I like it
 	-- disabling
 	-- {
 	--     -- https://github.com/echasnovski/mini.files

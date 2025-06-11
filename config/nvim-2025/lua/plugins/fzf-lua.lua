@@ -29,7 +29,6 @@ return {
 				require("fzf-lua").files({ cwd = "~/.config/nvim" })
 			end,
 		},
-		-- {"<leader><leader>", function() require("fzf-lua").buffers() end }, -- don't like it - disabling
 
 		-- grep
 		-- {"<leader>fw", function() require("fzf-lua").grep_cword() end },   -- search word under the cursor - disabled in favour of visual selection search

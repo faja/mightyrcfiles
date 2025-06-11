@@ -17,6 +17,8 @@ return {
 				-- -- Conform will run the first available formatter
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
 
+				-- NOTE: the key here is "filetpe", and the value{} is what binary to run to format
+				-- NOTE: to install binaries via :Mason, configure them in ./lsp.lua, search for `binaries`
 				go = { "gofmt" },
 				terraform = { "terraform_fmt" }, -- this internally runs `terraform fmt`
 				lua = { "stylua" },
