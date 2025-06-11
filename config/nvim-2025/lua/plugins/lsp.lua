@@ -1,19 +1,14 @@
 --[[
-	-- quite some keymaps are set up "globally" without "on_attach"
-	keymap.set("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-	keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-	-- keymap.set("i", "<leader>L", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts) -- i'm not entirely sure what it does
-	--
-	null_ls.builtins.formatting.shfmt.with({
-		extra_args = { "-i", "2", "-ci", "-bn", "-sr" }, -- for flags https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd#printer-flags
-	}),
+-- all the TODO: on this file:
+--		- lsp keymaps
+--		- check the LSP servers and what to use
+--		- check what linters to use and how to configure them
+--		- check what formaters to use
+--		- go setup
+--			- https://www.youtube.com/watch?v=n5_WLgxwkU8&list=WL&index=51&t=6s
+--		- ? rust setup ?
 --]]
---
--- TODO: rust setup
---
+
 return {
 	{
 		-- https://github.com/neovim/nvim-lspconfig
@@ -58,6 +53,9 @@ return {
 				-- "goimports",
 				-- "shellcheck",
 				-- "shfmt", -- beautysh ?
+				-- null_ls.builtins.formatting.shfmt.with({
+				-- 	extra_args = { "-i", "2", "-ci", "-bn", "-sr" }, -- for flags https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd#printer-flags
+				-- }),
 				-- "yamllint",
 			}
 
@@ -130,6 +128,13 @@ return {
 					-- vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", keymapopts) -- jump to previous diagnostic in buffer
 
 					-- lsp keymaps
+					--		my previous keymaps
+					-- keymap.set("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+					-- keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+					-- keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					-- keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+					-- keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+					-- keymap.set("i", "<leader>L", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts) -- i'm not entirely sure what it does
 					-- -- TODO:
 					-- -- Rename the variable under your cursor.
 					-- --  Most Language Servers support renaming across files, etc.
