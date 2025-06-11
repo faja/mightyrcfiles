@@ -8,6 +8,8 @@ leader><C-n>  -- nvim tree toggle
 leader>F      -- nvim tree find file toggle
 }}}
 -- DIAGNOSTICS {{{
+]d  -- jump to next diagnostic in buffer
+[d  -- jump to previous diagnostic in buffer
 gl  -- diagnostics floating window
 gq  -- diagnostics to quick fix list
 gz  -- toggle diagnostics
