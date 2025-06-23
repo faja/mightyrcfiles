@@ -114,8 +114,8 @@ return {
 
 					-- diagnostics keymaps
 					-- :help vim.diagnostic.<TAB>
-					vim.keymap.set("n", "gq", vim.diagnostic.setqflist, keymapopts) -- show float
-					vim.keymap.set("n", "gl", vim.diagnostic.open_float, keymapopts) -- quick fix list
+					vim.keymap.set("n", "gq", vim.diagnostic.setqflist, keymapopts) -- quick fix list
+					vim.keymap.set("n", "gl", vim.diagnostic.open_float, keymapopts) -- show float
 					vim.keymap.set("n", "gz", function() -- toggle diagnostics
 						if vim.diagnostic.is_enabled() then
 							vim.diagnostic.enable(false)
