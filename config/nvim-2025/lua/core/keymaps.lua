@@ -69,6 +69,10 @@ vim.keymap.set("n", "Y", "yy", keymapopts) -- old good Y
 vim.keymap.set("n", "<leader>/", ":noh<CR>", keymapopts) -- clear highliting
 
 -- split
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", keymapopts) -- next buffer
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", keymapopts) -- previous buffer
+
+-- split
 vim.keymap.set("n", "<leader>ss", "<c-w>v", keymapopts) -- split vertically   `|`
 vim.keymap.set("n", "<leader>s-", "<c-w>s", keymapopts) -- split horizontally `-`
 vim.keymap.set("n", "<leader>se", "<c-w>=", keymapopts) -- make splits equal
