@@ -5,6 +5,11 @@ return {
 	opts = {
 		grep = {
 			hidden = true,
+			keymap = {
+				fzf = {
+					["ctrl-q"] = "select-all+accept",
+				},
+			},
 		},
 	},
 	keys = {
