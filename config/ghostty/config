@@ -15,10 +15,12 @@ theme=Retro Legends
 theme=Alien Blood
 theme=One Double Dark
 theme=Wryan
+theme=Alien Blood
 
-# ctrl + 0     - reset font size
-# ctrl + equal - increas font size
-# ctrl + minus - decreas font size
+# ctrl + 0         - reset font size
+# ctrl + equal     - increas font size
+# ctrl + minus     - decreas font size
+# ctrl + shift + , - reloads config
 
 # NOTE: uncomment on Mac
 #background-opacity=1
