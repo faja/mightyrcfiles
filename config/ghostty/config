@@ -11,10 +11,10 @@ font-feature=-dlig
 theme=Gruvbox Dark Hard
 theme=Batman
 theme=Blue Matrix
-theme=Wryan
 theme=Retro Legends
 theme=Alien Blood
 theme=One Double Dark
+theme=Wryan
 
 # ctrl + 0     - reset font size
 # ctrl + equal - increas font size
@@ -24,3 +24,4 @@ theme=One Double Dark
 #background-opacity=1
 #font-size=11
 #font-family=Hack Nerd Font Mono
+#theme=One Double Dark
