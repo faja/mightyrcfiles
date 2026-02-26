@@ -20,7 +20,8 @@ alias gl1="git log -1"
 alias gl="git log --all --decorate --oneline --graph"
 alias glf="git log -1 --pretty=format:'%s%n%n%b'"
 alias glg="git log --grep "
-alias gw='git worktree'
+alias gw="git worktree"
+alias gclean="git reset --hard HEAD && git clean -fd"
 # }}}
 # k8s {{{
 alias k="kubectl"
