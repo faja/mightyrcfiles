@@ -1,7 +1,46 @@
+# prompt
+setopt PROMPT_SUBST
+PS1='%B%F{2}%~%f%b %# '
+RPS1='%(?.[%?].[%F{1}%B%?%f%b])'
+
+# some generic options
+setopt NO_BEEP         # disable terminal bell sound
+setopt AUTO_CD         # allow to cd without typing cd
+setopt EXTENDED_GLOB   # enable extended globbing patterns
+
+# ---------------------------------------------------------------------------- #
+## bindkey {{{
+# fyi
+#   -e  - '-e' sets keymap to "EMACS" mode, for stuff like ctrl+a, ctrl+u, etc...
+#   -s  - '-s' binds a key to a string that gets typed out - it's esentially a MACRO
+#
+bindkey -e  # '-e' sets keymap to "EMACS" mode, for stuff like ctrl+a, ctrl+u, etc...
+
+bindkey "^[[1~" beginning-of-line       # home
+bindkey "^[[4~" end-of-line             # end
+bindkey "^[[3~" delete-char-or-list     # delete
+#bindkey "^[[24~" universal-argument     # F12
+#bindkey "^T" history-incremental-search-forward
+
+bindkey -s '^f' 'j -t^m' # bind CTRL-F to `j` command
+# }}}
+
+# ---------------------------------------------------------------------------- #
+# history {{{
+HISTSIZE=1001
+SAVEHIST=1000
+HISTFILE=~/.history
+setopt INC_APPEND_HISTORY   # append command to history "imidiately" (instead of when shell exits)
+setopt SHARE_HISTORY        # share history across all open sessions
+setopt HIST_IGNORE_SPACE    # don't add command to history if it starts with SPACE
+setopt HIST_IGNORE_ALL_DUPS # remove duplicates, keeps history clean
+# }}}
 
 # ---------------------------------------------------------------------------- #
 # exports {{{
+export EDITOR="nvim"
 export AI_CLI_TOOL=";"
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 # }}}
 
 # ---------------------------------------------------------------------------- #
@@ -46,6 +85,12 @@ alias mm="cd ~/GitRepos/PERSONAL/mightymanuals"
 alias mp="cd ~/GitRepos/PERSONAL/mightyplay"
 alias mr="cd ~/GitRepos/PERSONAL/mightyrcfiles"
 # }}}
+# }}}
+
+# ---------------------------------------------------------------------------- #
+# functions autoload {{{
+fpath=(~/.config/zsh/functions $fpath)
+autoload -U ${fpath[1]}/*(:t)
 # }}}
 
 # ---------------------------------------------------------------------------- #
