@@ -1,7 +1,13 @@
 
 # ---------------------------------------------------------------------------- #
+# exports {{{
+export AI_CLI_TOOL=";"
+# }}}
+
+# ---------------------------------------------------------------------------- #
 # aliases {{{
 # misc {{{
+alias l="ls -lah --color=auto"
 alias t="tmux"
 alias ta="tmux attach"
 alias tn="tmux new-session -d -s"
@@ -41,7 +47,6 @@ alias mp="cd ~/GitRepos/PERSONAL/mightyplay"
 alias mr="cd ~/GitRepos/PERSONAL/mightyrcfiles"
 # }}}
 # }}}
-
 
 # ---------------------------------------------------------------------------- #
 # extra loads {{{

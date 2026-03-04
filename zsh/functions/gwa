@@ -1,0 +1,2 @@
+git worktree add ../branches/"${1}" -b "${1}"
+cd ../branches/"${1}"

@@ -1,0 +1,5 @@
+rm -rf ../branches
+git worktree prune
+git branch -r | grep -v HEAD | xargs -n 1 git branch -d -r
+git branch | grep -vE 'main$|master$' | xargs git branch -D
+git pull origin $(ggb)
