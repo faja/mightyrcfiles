@@ -1,0 +1,6 @@
+DIR=.
+if test "${1}"
+then
+  DIR=${1}
+fi
+cd $(find ${DIR} -type d | fzf)

@@ -1,0 +1,3 @@
+echo exec into ${1}
+ALLOC_ID=$(nomad job status ${1} 2>&1 | grep -A 2 Allocations | grep running | awk '{print $1}')
+nomad alloc exec ${ALLOC_ID} sh

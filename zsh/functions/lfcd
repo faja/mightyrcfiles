@@ -1,0 +1,2 @@
+lf -last-dir-path /tmp/lf-last-dir
+cd $(cat /tmp/lf-last-dir)

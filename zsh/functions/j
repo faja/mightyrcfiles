@@ -1,0 +1,8 @@
+if echo -- $@ | grep -q -w -e "--help" -e "-h" -e "--add" -e "-a" -e "--edit" -e "-e" -e "--rm" -e "-r" -e "--tmux" -e "-t"; then
+  jj $@
+else
+  DIR=$(jj $@)
+  if test ${DIR}; then
+    cd ${DIR}
+  fi
+fi

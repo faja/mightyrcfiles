@@ -1,3 +1,7 @@
 # nvim
 config/nvim/plugin
 lazy-lock.json
+
+# zsh
+zsh/functions.local/*
+!zsh/functions.local/.git.keep

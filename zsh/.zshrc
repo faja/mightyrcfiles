@@ -1,7 +1,14 @@
-# prompt
+# ---------------------------------------------------------------------------- #
+# prompt {{{
 setopt PROMPT_SUBST
 PS1='%B%F{2}%~%f%b %# '
 RPS1='%(?.[%?].[%F{1}%B%?%f%b])'
+# %B%b - start stop bold mode
+# %F%f - color
+# %~   - current working directory, starting with ~
+# %#   - % or # depending if root or not
+# more sutff ~> https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
+# }}}
 
 # some generic options
 setopt NO_BEEP         # disable terminal bell sound
@@ -9,7 +16,7 @@ setopt AUTO_CD         # allow to cd without typing cd
 setopt EXTENDED_GLOB   # enable extended globbing patterns
 
 # ---------------------------------------------------------------------------- #
-## bindkey {{{
+# bindkey {{{
 # fyi
 #   -e  - '-e' sets keymap to "EMACS" mode, for stuff like ctrl+a, ctrl+u, etc...
 #   -s  - '-s' binds a key to a string that gets typed out - it's esentially a MACRO
@@ -90,7 +97,7 @@ alias mr="cd ~/GitRepos/PERSONAL/mightyrcfiles"
 
 # ---------------------------------------------------------------------------- #
 # functions autoload {{{
-fpath=(~/.config/zsh/functions $fpath)
+fpath=(~/.config/zsh/functions ~/.config/zsh/functions.local $fpath)
 autoload -U ${fpath[1]}/*(:t)
 # }}}
 
