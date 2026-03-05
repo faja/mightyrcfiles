@@ -1,0 +1,3 @@
+# ssh-agent
+test -S $HOME/.ssh/ssh-agent-i-m-the-only-one && \
+  export SSH_AUTH_SOCK=$HOME/.ssh/ssh-agent-i-m-the-only-one

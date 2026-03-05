@@ -1,4 +1,27 @@
 # ---------------------------------------------------------------------------- #
+# path {{{
+typeset -U path                             # set path variable as UNIQUE, run 'typeset +U' to check unique variables
+path=(
+  $HOME/.cargo/bin
+  /home/mc/.tfenv/bin
+  /home/mc/.pyenv/bin
+  /home/mc/.gem/ruby/3.4.0/bin
+  /home/mc/bin
+  /home/mc/bin2
+  /home/mc/GitRepos/PERSONAL/mightyscripts/bin
+  /home/mc/GitRepos/PERSONAL/shell-helpers/chef
+  /home/mc/GitRepos/PERSONAL/shell-helpers/container
+  /home/mc/GitRepos/PERSONAL/shell-helpers/k8s
+  /home/mc/GitRepos/PERSONAL/shell-helpers/tmux
+  /home/mc/GitRepos/PERSONAL/shell-helpers/terraform
+
+  /usr/local/go/bin
+  $GOPATH/bin
+  $path
+)
+# }}}
+
+# ---------------------------------------------------------------------------- #
 # prompt {{{
 setopt PROMPT_SUBST
 PS1='%B%F{2}%~%f%b %# '
@@ -34,8 +57,8 @@ bindkey -s '^f' 'j -t^m' # bind CTRL-F to `j` command
 
 # ---------------------------------------------------------------------------- #
 # history {{{
-HISTSIZE=1001
-SAVEHIST=1000
+HISTSIZE=1000001
+SAVEHIST=1000001
 HISTFILE=~/.history
 setopt INC_APPEND_HISTORY   # append command to history "imidiately" (instead of when shell exits)
 setopt SHARE_HISTORY        # share history across all open sessions
@@ -99,15 +122,48 @@ alias mr="cd ~/GitRepos/PERSONAL/mightyrcfiles"
 # functions autoload {{{
 fpath=(~/.config/zsh/functions ~/.config/zsh/functions.local $fpath)
 autoload -U ${fpath[1]}/*(:t)
+autoload -U ${fpath[2]}/*(:t)
+# }}}
+
+# ---------------------------------------------------------------------------- #
+# misc {{{
+# requires `fzf` package
+source <(fzf --zsh)
+
+# requires `zsh-syntax-highlighting` package
+# linux
+test -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && \
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# mac
+test -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && \
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # }}}
 
 # ---------------------------------------------------------------------------- #
 # extra loads {{{
 # load extra stuff if exists
-if test -r ~/.config/zsh/.zshrc.$(uname); then
-  . ~/.config/zsh/.zshrc.$(uname)
-fi
+test -r ~/.config/zsh/.zshrc.$(uname) && \
+  source ~/.config/zsh/.zshrc.$(uname)
 
-if test -r ~/.zshrc.local; then
-  . ~/.zshrc.local
-fi
+test -r ~/.zshrc.local && \
+  source ~/.zshrc.local
+# }}}
+
+# TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+
+## autocompletion
+#autoload -U compinit
+#compinit
+#zstyle ':completion:*' menu select
+
+## Edit the current command line in $EDITOR
+#autoload -U edit-command-line
+#zle -N edit-command-line
+#bindkey '^x^e' edit-command-line
+
+## pyenv
+#export PYENV_ROOT=${HOME}/.pyenv
+#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#eval "$(pyenv init -)"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv virtualenv-init -)"
