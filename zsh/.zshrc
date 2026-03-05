@@ -41,6 +41,7 @@ setopt HIST_IGNORE_ALL_DUPS # remove duplicates, keeps history clean
 export EDITOR="nvim"
 export AI_CLI_TOOL=";"
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+export GOPATH=~/workspace/gopath
 # }}}
 
 # ---------------------------------------------------------------------------- #
