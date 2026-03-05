@@ -137,6 +137,11 @@ test -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 # mac
 test -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh && \
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# edit the current command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 # }}}
 
 # ---------------------------------------------------------------------------- #
@@ -155,11 +160,6 @@ test -r ~/.zshrc.local && \
 #autoload -U compinit
 #compinit
 #zstyle ':completion:*' menu select
-
-## Edit the current command line in $EDITOR
-#autoload -U edit-command-line
-#zle -N edit-command-line
-#bindkey '^x^e' edit-command-line
 
 ## pyenv
 #export PYENV_ROOT=${HOME}/.pyenv
