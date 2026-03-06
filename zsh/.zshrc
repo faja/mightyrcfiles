@@ -72,13 +72,33 @@ export GOPATH=~/workspace/gopath
 # aliases {{{
 # misc {{{
 alias l="ls -lah --color=auto"
+alias lg="ls -lah --color=auto | grep --color"
+alias g="grep --color"
 alias t="tmux"
 alias ta="tmux attach"
 alias tn="tmux new-session -d -s"
 
+alias v="nvim"
+alias vd="nvim -d"
 alias ghc="nvim ~/.config/ghostty/config"
 
+# my linux workstation specific - I use arch btw {{{
 alias kkk="xset r rate 180 34"
+alias tt_8='transset-df 0.8 --id $WINDOWID > /dev/null'
+alias tt_9='transset-df 0.9 --id $WINDOWID > /dev/null'
+alias tt_off='transset-df 1 --id $WINDOWID > /dev/null'
+alias docker_start="sudo systemctl start docker"
+alias cupsd_start="sudo systemctl start cups.service"
+alias f="feh --auto-rotate --scale-down *"
+alias nsa="sudo netctl stop-all"
+alias nl="sudo netctl list"
+alias nh="sudo netctl start wlp0s20f3-PrettyFlyForAWiFi-King"
+alias shutdown_as_root='sudo shutdown -P now'
+alias resize_image='convert -filter Cubic -resize 600'
+alias resize_image_size='convert -strip -quality 90 ori.jpg new.jpg'
+alias mplayer_camera_preview='mplayer -ontop -noborder -geometry "320x240-10-20" -tv driver=v4l2:device=/dev/video0 tv://'
+alias mplayer_camera_preview='mplayer -ontop -noborder -geometry "320x240-10-20" -tv driver=v4l2:device=/dev/video0 tv://'
+# }}}
 # }}}
 # git {{{
 alias gs="git status"
@@ -92,11 +112,33 @@ alias glf="git log -1 --pretty=format:'%s%n%n%b'"
 alias glg="git log --grep "
 alias gw="git worktree"
 alias gclean="git reset --hard HEAD && git clean -fd"
+alias git_branch_clean='git branch | grep -v master -v main | xargs -i git branch -D {}'
 # }}}
-# k8s {{{
+# docker and k8s {{{
+alias d='docker'
+alias drm='docker run --rm -i -t'
+
 alias k="kubectl"
+alias kg='kubectl get'
+alias kd='kubectl describe'
 alias ka="kubectl apply -f"
+alias krm='kubectl delete'
+
+alias kgp='kubectl get pods'
+alias kdp='kubectl describe pods'
+alias kgp_sort_by_node_name='kubectl get pods --sort-by='{.spec.nodeName}' -o wide'
+
+alias klo='kubectl logs -f'
+alias kex='kubectl exec -i -t'
+alias kbb='kubectl run debug-pod --image=alpine:3 --rm -it --restart=Never --command -- /bin/sh'
+
 alias h="helm"
+alias hl='helm list'
+alias hla='helm list -aA'
+alias hs='helm secrets'
+
+alias kns='kubens'
+alias kctx='kubectx'
 # }}}
 # terraform {{{
 alias tf="terraform"
