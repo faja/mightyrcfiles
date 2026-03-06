@@ -142,6 +142,11 @@ test -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
+
+# autocompletion # this is mainy for <TAB> <TAB> looking good
+autoload -U compinit
+compinit
+zstyle ':completion:*' menu select
 # }}}
 
 # ---------------------------------------------------------------------------- #
@@ -155,11 +160,6 @@ test -r ~/.zshrc.local && \
 # }}}
 
 # TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-
-## autocompletion
-#autoload -U compinit
-#compinit
-#zstyle ':completion:*' menu select
 
 ## pyenv
 #export PYENV_ROOT=${HOME}/.pyenv
