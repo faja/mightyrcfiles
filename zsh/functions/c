@@ -1,0 +1,6 @@
+# ---------------------------------------------------------------------------- #
+# c - search dirs from ~/.history with fzf - and cd to selected
+#
+
+DIR=$(cat <(grep "^: " -v ~/.history) <(grep "^: " ~/.history | awk -F';' '{print $2}') | grep -E '^cd ~' | awk '{print $2}' | sort | uniq | fzf)
+eval cd ${DIR}

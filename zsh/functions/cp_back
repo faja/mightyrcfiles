@@ -1,0 +1,14 @@
+# ---------------------------------------------------------------------------- #
+# cp_back - makes a backup of a file ~> ${FILENAME}.bak
+#
+
+if test -f ${1}.bak
+then
+  print ${1}.bak exists
+  if read -q '?Do you want to overwrite it? (y/n): '
+  then
+    sudo cp -p $1{,.bak}
+  fi
+else
+  sudo cp -p $1{,.bak}
+fi
