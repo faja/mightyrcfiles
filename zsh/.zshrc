@@ -2,22 +2,14 @@
 # path {{{
 typeset -U path                             # set path variable as UNIQUE, run 'typeset +U' to check unique variables
 path=(
-  $HOME/.cargo/bin
-  /home/mc/.tfenv/bin
-  /home/mc/.pyenv/bin
-  /home/mc/.gem/ruby/3.4.0/bin
-  /home/mc/bin
-  /home/mc/bin2
-  /home/mc/GitRepos/PERSONAL/mightyscripts/bin
-  /home/mc/GitRepos/PERSONAL/shell-helpers/chef
-  /home/mc/GitRepos/PERSONAL/shell-helpers/container
-  /home/mc/GitRepos/PERSONAL/shell-helpers/k8s
-  /home/mc/GitRepos/PERSONAL/shell-helpers/tmux
-  /home/mc/GitRepos/PERSONAL/shell-helpers/terraform
-
-  /usr/local/go/bin
-  $GOPATH/bin
-  $path
+   $HOME/dev/bin
+   $HOME/dev/bin2
+   $HOME/.local/bin
+   $HOME/.cargo/bin
+   $HOME/.bun/bin
+   $HOME/go/bin
+   /usr/local/go/bin
+   $path
 )
 # }}}
 
@@ -61,6 +53,7 @@ HISTSIZE=1000001
 SAVEHIST=1000001
 HISTFILE=~/.history
 setopt INC_APPEND_HISTORY   # append command to history "imidiately" (instead of when shell exits)
+setopt EXTENDED_HISTORY     # add timestamp to history
 setopt SHARE_HISTORY        # share history across all open sessions
 setopt HIST_IGNORE_SPACE    # don't add command to history if it starts with SPACE
 setopt HIST_IGNORE_ALL_DUPS # remove duplicates, keeps history clean
