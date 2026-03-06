@@ -4,6 +4,7 @@ typeset -U path                             # set path variable as UNIQUE, run '
 path=(
    $HOME/dev/bin
    $HOME/dev/bin2
+   /opt/homebrew/bin
    $HOME/.local/bin
    $HOME/.cargo/bin
    $HOME/.bun/bin
