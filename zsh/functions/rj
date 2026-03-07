@@ -1,0 +1,10 @@
+# ---------------------------------------------------------------------------- #
+# rj - quick jump back function
+#
+
+if test -z ${1}
+then
+  cd $(cat ~/.config/rj)
+else
+  pwd > ~/.config/rj
+fi

@@ -66,6 +66,14 @@ export EDITOR="nvim"
 export AI_CLI_TOOL=";"
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 export GOPATH=~/workspace/gopath
+
+export PYENV_ROOT=${HOME}/.pyenv
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#eval "$(pyenv init -)"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv virtualenv-init -)"
+# NOTE: penv is not initialised here, it takes too long :sad_pepe:
+#       pyenv init - moved to custom function e_pyenv
 # }}}
 
 # ---------------------------------------------------------------------------- #
@@ -194,12 +202,3 @@ test -r ~/.config/zsh/.zshrc.$(uname) && \
 test -r ~/.zshrc.local && \
   source ~/.zshrc.local
 # }}}
-
-# TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-
-## pyenv
-#export PYENV_ROOT=${HOME}/.pyenv
-#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-#eval "$(pyenv init -)"
-#eval "$(pyenv init --path)"
-#eval "$(pyenv virtualenv-init -)"

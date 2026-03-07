@@ -1,0 +1,8 @@
+# ---------------------------------------------------------------------------- #
+# e_pyenv - enable pyenv in current shell, this is because I don't want to run
+#           these commands on every shell, bc they take too long
+#
+
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
