@@ -118,16 +118,28 @@ alias mplayer_camera_preview='mplayer -ontop -noborder -geometry "320x240-10-20"
 # git {{{
 alias gs="git status"
 alias gd="git diff"
+alias gb="git branch"
+alias gbr="git ls-remote --heads" # list branches on remote
+alias gtr="git ls-remote --tags"  # list tags on remote
+alias gsw='git switch $(git branch --format "%(refname:short)" | fzf)' # switch to different branch
+
 alias gm="git pull origin master"
 alias gmn="git pull origin main"
 alias ggb="git status | head -1 | awk '{print \$NF}'"
-alias gl1="git log -1"
-alias gl="git log --all --decorate --oneline --graph"
+
+alias gl="git log -1"
+alias gll="git log --pretty=\"%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s\""
 alias glf="git log -1 --pretty=format:'%s%n%n%b'"
 alias glg="git log --grep "
+
 alias gw="git worktree"
+alias ggb="git status | head -1 | awk '{print \$NF}'" # ggb = get git branch :)
 alias gclean="git reset --hard HEAD && git clean -fd"
 alias git_branch_clean='git branch | grep -v master -v main | xargs -i git branch -D {}'
+alias gb_rm="git branch | grep -vE 'main$|master$' | xargs git branch -D"
+
+alias gfr='git fetch origin $(gbr | fzf | awk -F "refs\/heads\/" "{print \$2}" | sed -e "s/\(.*\)/\1:\1/")'
+alias gwrm="git worktree list | fzf | awk -F'[' '{print \$2}' | awk -F']' '{print \$1}'  | xargs git worktree remove"
 # }}}
 # k8s and helm (and docker) {{{
 alias d='docker'
