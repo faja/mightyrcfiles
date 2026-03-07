@@ -74,6 +74,9 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 #eval "$(pyenv virtualenv-init -)"
 # NOTE: penv is not initialised here, it takes too long :sad_pepe:
 #       pyenv init - moved to custom function e_pyenv
+
+export BUN_INSTALL="$HOME/.bun"
+test -r ~/.bun/_bun && source ~/.bun/_bun
 # }}}
 
 # ---------------------------------------------------------------------------- #
@@ -84,11 +87,15 @@ alias lg="ls -lah --color=auto | grep --color"
 alias g="grep --color"
 alias t="tmux"
 alias ta="tmux attach"
-alias tn="tmux new-session -d -s"
+alias tn="tmux new-session -d -c ~/dev -s"
 
 alias v="nvim"
 alias vd="nvim -d"
+alias vt="nvim /tmp/tmp.txt"
+alias ct="cat /tmp/tmp.txt"
 alias ghc="nvim ~/.config/ghostty/config"
+
+alias bn="basename \${PWD}"
 
 # my linux workstation specific - I use arch btw {{{
 alias kkk="xset r rate 180 34"
@@ -122,7 +129,7 @@ alias gw="git worktree"
 alias gclean="git reset --hard HEAD && git clean -fd"
 alias git_branch_clean='git branch | grep -v master -v main | xargs -i git branch -D {}'
 # }}}
-# docker and k8s {{{
+# k8s and helm (and docker) {{{
 alias d='docker'
 alias drm='docker run --rm -i -t'
 
@@ -148,12 +155,24 @@ alias hs='helm secrets'
 alias kns='kubens'
 alias kctx='kubectx'
 # }}}
+# nomad {{{
+alias nomad="nomad"
+# NOTE: n is custom shell script a wrapper around nomad
+alias njs="n job status --verbose"
+alias nji="n job inspect"
+alias nas="n alloc status --verbose"
+alias nal="n alloc logs"
+alias nalt="n alloc logs -f -n 100 --tail"
+alias nalt="n alloc logs -f -n 100 --tail -stderr"
+alias nae="n alloc exec"
+# }}}
 # terraform {{{
 alias tf="terraform"
 alias tfv="terraform version"
 alias tfi="terraform init"
 alias tfa="terraform apply"
 alias tfaaa="terraform apply -auto-approve"
+alias tfp="terraform plan"
 # }}}
 # jumps {{{
 alias mm="cd ~/GitRepos/PERSONAL/mightymanuals"
