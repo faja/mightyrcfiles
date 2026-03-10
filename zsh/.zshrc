@@ -97,6 +97,8 @@ alias ghc="nvim ~/.config/ghostty/config"
 
 alias bn="basename \${PWD}"
 
+alias cc="claude"
+alias oc="opencode"
 # my linux workstation specific - I use arch btw {{{
 alias kkk="xset r rate 180 34"
 alias tt_8='transset-df 0.8 --id $WINDOWID > /dev/null'
@@ -168,7 +170,6 @@ alias kns='kubens'
 alias kctx='kubectx'
 # }}}
 # nomad {{{
-alias nomad="nomad"
 # NOTE: n is custom shell script a wrapper around nomad
 alias njs="n job status --verbose"
 alias nji="n job inspect"
