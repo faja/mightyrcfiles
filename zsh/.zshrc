@@ -176,7 +176,7 @@ alias nji="n job inspect"
 alias nas="n alloc status --verbose"
 alias nal="n alloc logs"
 alias nalt="n alloc logs -f -n 100 --tail"
-alias nalt="n alloc logs -f -n 100 --tail -stderr"
+alias nalte="n alloc logs -f -n 100 --tail -stderr"
 alias nae="n alloc exec"
 # }}}
 # terraform {{{
